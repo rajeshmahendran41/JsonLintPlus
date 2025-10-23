@@ -1,0 +1,441 @@
+/* Theme-specific styles for JSON Validator & Formatter */
+
+/* Light theme enhancements */
+[data-theme="light"] {
+  /* Enhanced color palette for light theme */
+  --primary-light: #e8f5e8;
+  --primary-dark: #388e3c;
+  
+  --secondary-light: #f5f5f5;
+  --secondary-dark: #424242;
+  
+  --success-light: #e8f5e8;
+  --success-dark: #2e7d32;
+  
+  --error-light: #ffebee;
+  --error-dark: #c62828;
+  
+  --warning-light: #fff3e0;
+  --warning-dark: #f57c00;
+  
+  /* Gradient backgrounds */
+  --gradient-primary: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  --gradient-secondary: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+  
+  /* Shadow colors */
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --shadow-hover: rgba(0, 0, 0, 0.15);
+}
+
+/* Dark theme enhancements */
+[data-theme="dark"] {
+  /* Enhanced color palette for dark theme */
+  --primary-light: #1b5e20;
+  --primary-dark: #66bb6a;
+  
+  --secondary-light: #424242;
+  --secondary-dark: #f5f5f5;
+  
+  --success-light: #1b5e20;
+  --success-dark: #66bb6a;
+  
+  --error-light: #b71c1c;
+  --error-dark: #ef5350;
+  
+  --warning-light: #e65100;
+  --warning-dark: #ffb74d;
+  
+  /* Gradient backgrounds */
+  --gradient-primary: linear-gradient(135deg, #45a049 0%, #4CAF50 100%);
+  --gradient-secondary: linear-gradient(135deg, #5a6268 0%, #6c757d 100%);
+  
+  /* Shadow colors */
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --shadow-hover: rgba(0, 0, 0, 0.5);
+  
+  /* Dark theme specific backgrounds */
+  --bg-code-editor: #1e1e1e;
+  --bg-code-gutter: #252526;
+  --bg-code-selection: #264f78;
+  --bg-code-line: #2d2d30;
+  
+  /* Dark theme text colors */
+  --text-code-editor: #d4d4d4;
+  --text-code-selection: #ffffff;
+  --text-code-gutter: #858585;
+}
+
+/* Theme transition animations */
+.theme-transition,
+.theme-transition *,
+.theme-transition *::before,
+.theme-transition *::after {
+  transition: background-color 0.3s ease, 
+              color 0.3s ease, 
+              border-color 0.3s ease, 
+              box-shadow 0.3s ease !important;
+}
+
+/* Header theme variations */
+[data-theme="light"] .app-header {
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+
+[data-theme="dark"] .app-header {
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  border-bottom-color: var(--border-color);
+}
+
+/* Button theme variations */
+[data-theme="light"] .btn-primary {
+  background: var(--gradient-primary);
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+[data-theme="dark"] .btn-primary {
+  background: var(--gradient-primary);
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+[data-theme="light"] .btn-secondary {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .btn-secondary {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .btn-secondary:hover {
+  background: var(--bg-secondary);
+  box-shadow: 0 4px 8px var(--shadow-hover);
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+  background: var(--bg-tertiary);
+  box-shadow: 0 4px 8px var(--shadow-hover);
+}
+
+/* Content area theme variations */
+[data-theme="light"] .content-container {
+  background: var(--bg-primary);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+[data-theme="dark"] .content-container {
+  background: var(--bg-primary);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+/* Editor theme variations */
+[data-theme="light"] .json-editor {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .json-editor {
+  background: var(--bg-code-editor);
+  color: var(--text-code-editor);
+}
+
+[data-theme="light"] .json-editor::placeholder {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .json-editor::placeholder {
+  color: var(--text-muted);
+}
+
+/* Output area theme variations */
+[data-theme="light"] .json-output {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .json-output {
+  background: var(--bg-code-editor);
+  color: var(--text-code-editor);
+}
+
+/* Settings panel theme variations */
+[data-theme="light"] .settings-panel {
+  background: var(--bg-primary);
+  box-shadow: -4px 0 20px var(--shadow-color);
+}
+
+[data-theme="dark"] .settings-panel {
+  background: var(--bg-primary);
+  box-shadow: -4px 0 20px var(--shadow-color);
+}
+
+/* Form controls theme variations */
+[data-theme="light"] .setting-control {
+  background: var(--bg-primary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .setting-control {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .setting-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+[data-theme="dark"] .setting-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
+}
+
+/* Checkbox theme variations */
+[data-theme="light"] .checkmark {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .checkmark {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+[data-theme="light"] .checkbox-label:hover input ~ .checkmark {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+}
+
+[data-theme="dark"] .checkbox-label:hover input ~ .checkmark {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+/* Status indicators theme variations */
+[data-theme="light"] .status-indicator.valid {
+  background: var(--success-light);
+  color: var(--success-dark);
+}
+
+[data-theme="dark"] .status-indicator.valid {
+  background: var(--success-light);
+  color: var(--success-dark);
+}
+
+[data-theme="light"] .status-indicator.invalid {
+  background: var(--error-light);
+  color: var(--error-dark);
+}
+
+[data-theme="dark"] .status-indicator.invalid {
+  background: var(--error-light);
+  color: var(--error-dark);
+}
+
+/* File drop overlay theme variations */
+[data-theme="light"] .drop-message {
+  background: var(--bg-primary);
+  border-color: var(--primary-color);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .drop-message {
+  background: var(--bg-primary);
+  border-color: var(--primary-color);
+  color: var(--text-primary);
+}
+
+/* Theme toggle button styling */
+.theme-toggle {
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-toggle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, var(--primary-color) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.theme-toggle:active::before {
+  width: 100%;
+  height: 100%;
+}
+
+/* Syntax highlighting theme variations */
+[data-theme="light"] .json-key {
+  color: #0066cc;
+  font-weight: 500;
+}
+
+[data-theme="light"] .json-string {
+  color: #008000;
+}
+
+[data-theme="light"] .json-number {
+  color: #ff6600;
+}
+
+[data-theme="light"] .json-boolean {
+  color: #9900cc;
+  font-weight: 500;
+}
+
+[data-theme="light"] .json-null {
+  color: #999999;
+  font-style: italic;
+}
+
+[data-theme="dark"] .json-key {
+  color: #66b3ff;
+  font-weight: 500;
+}
+
+[data-theme="dark"] .json-string {
+  color: #66ff66;
+}
+
+[data-theme="dark"] .json-number {
+  color: #ffcc66;
+}
+
+[data-theme="dark"] .json-boolean {
+  color: #cc99ff;
+  font-weight: 500;
+}
+
+[data-theme="dark"] .json-null {
+  color: #cccccc;
+  font-style: italic;
+}
+
+/* Error highlighting theme variations */
+[data-theme="light"] .error-highlight {
+  background-color: rgba(244, 67, 54, 0.1);
+  border-left-color: var(--error-color);
+}
+
+[data-theme="dark"] .error-highlight {
+  background-color: rgba(244, 67, 54, 0.2);
+  border-left-color: var(--error-color);
+}
+
+/* Scrollbar theme variations */
+[data-theme="light"] ::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* CodeMirror specific theme overrides */
+[data-theme="light"] .cm-editor {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .cm-editor {
+  background: var(--bg-code-editor);
+  color: var(--text-code-editor);
+}
+
+[data-theme="light"] .cm-gutter {
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .cm-gutter {
+  background: var(--bg-code-gutter);
+  border-right: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .cm-lineNumbers .cm-gutterElement {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .cm-lineNumbers .cm-gutterElement {
+  color: var(--text-code-gutter);
+}
+
+[data-theme="light"] .cm-selectionBackground {
+  background: var(--bg-code-selection);
+}
+
+[data-theme="dark"] .cm-selectionBackground {
+  background: var(--bg-code-selection);
+}
+
+/* Loading and animation states */
+[data-theme="light"] .loading {
+  color: var(--primary-color);
+}
+
+[data-theme="dark"] .loading {
+  color: var(--primary-color);
+}
+
+/* Focus indicators for accessibility */
+[data-theme="light"] .btn:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.2);
+}
+
+[data-theme="dark"] .btn:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.3);
+}
+
+/* Responsive theme adjustments */
+@media (max-width: 768px) {
+  [data-theme="light"] .settings-panel {
+    box-shadow: -4px 0 16px var(--shadow-color);
+  }
+  
+  [data-theme="dark"] .settings-panel {
+    box-shadow: -4px 0 16px var(--shadow-color);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  [data-theme="light"] {
+    --border-color: #000000;
+    --text-primary: #000000;
+    --bg-primary: #ffffff;
+    --primary-color: #0000ff;
+  }
+  
+  [data-theme="dark"] {
+    --border-color: #ffffff;
+    --text-primary: #ffffff;
+    --bg-primary: #000000;
+    --primary-color: #00ffff;
+  }
+}

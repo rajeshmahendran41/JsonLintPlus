@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Validate, format, and beautify your JSON instantly">
+  <meta name="keywords" content="JSON, validator, formatter, beautifier, minifier, parser">
+  <meta name="author" content="JSON Validator & Formatter">
+  
+  <!-- Open Graph meta tags -->
+  <meta property="og:title" content="JSON Validator & Formatter">
+  <meta property="og:description" content="Validate, format, and beautify your JSON instantly">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="/">
+  <meta property="og:image" content="/icons/icon-512.png">
+  <meta property="og:site_name" content="JsonlintPlus">
+  
+  <!-- Twitter Card meta tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="JSON Validator & Formatter">
+  <meta name="twitter:description" content="Validate, format, and beautify your JSON instantly">
+  <meta name="twitter:image" content="/icons/icon-512.png">
+  
+  <title>JSON Validator & Formatter</title>
+  <meta name="application-name" content="JsonlintPlus">
+  <meta name="robots" content="index, follow">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#4CAF50">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="canonical" href="/">
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
+  <link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512.png">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/editor.css"><!-- Enhanced CSS for editor with line numbers, editable output, and scrolling -->
+  <!-- Styles moved to external file css/editor.css --></head>
+<body data-theme="dark">
+
+  <!-- Main content -->
+  <main id="main-content" class="app-main" role="main">
+    <!-- Toolbar with action buttons -->
+    <section class="toolbar" role="toolbar" aria-label="JSON tools">
+      <div class="action-buttons">
+        <button id="validate-btn" class="btn btn-primary" aria-label="Validate JSON">
+          <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 11l3 3L22 4"></path>
+            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
+          </svg>
+          Validate
+        </button>
+        <button id="minify-btn" class="btn btn-secondary" aria-label="Minify JSON">
+          <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="4 14 10 14 10 20"></polyline>
+            <polyline points="20 10 14 10 14 4"></polyline>
+            <line x1="14" y1="10" x2="21" y2="3"></line>
+            <line x1="3" y1="21" x2="10" y2="14"></line>
+          </svg>
+          Minify
+        </button>
+        <button id="clear-btn" class="btn btn-danger" aria-label="Clear all">
+          <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path>
+          </svg>
+          Clear
+        </button>
+        <button id="copy-btn" class="btn btn-secondary" aria-label="Copy to clipboard">
+          <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+          </svg>
+          Copy
+        </button>
+        <button id="sample-btn" class="btn btn-secondary" aria-label="Load sample JSON">
+          <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          Sample
+        </button>
+      </div>
+      <div class="toolbar-actions">
+        <div class="toolbar-status" aria-live="polite">
+          <span id="validation-status" class="status-indicator">Ready</span>
+          <span id="parse-time" class="time-info"></span>
+        </div>
+        <button id="theme-toggle" class="btn btn-icon" aria-label="Toggle theme">
+          <svg class="theme-icon-light" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="theme-icon-dark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- Content container with input/output area -->
+    <section class="content-container" aria-label="JSON editor">
+      <div class="content-area" id="content-area">
+        <div class="editor-container" id="editor-container">
+          <div class="line-numbers" id="line-numbers"><div class="line-number">1</div></div>
+          <div class="editor-content" id="editor-content">
+            <!-- Input mode (textarea) -->
+            <div class="editor-wrapper" id="editor-wrapper">
+              <textarea id="json-input" class="json-editor" placeholder="Paste or type your JSON here...
+
+Example:
+{
+  &quot;name&quot;: &quot;John Doe&quot;,
+  &quot;age&quot;: 30,
+  &quot;city&quot;: &quot;New York&quot;
+}" aria-label="JSON input"></textarea>
+            </div>
+            <!-- Output mode (formatted display) -->
+            <div class="output-wrapper" id="output-wrapper">
+              <div id="json-output" class="json-output" aria-label="JSON output" contenteditable="true"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Info panel with line/character count -->
+      <div class="info-panel">
+        <div class="line-info">
+          <span id="line-count">0 lines</span> |
+          <span id="char-count">0 characters</span>
+        </div>
+        <div class="mode-indicator">
+          <span id="current-mode">Input Mode</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Status bar -->
+  </main>
+
+  <!-- Scripts -->
+  <!-- Scripts moved to external JS files -->
+<script src="js/env.js" defer></script>
+<script src="js/logger.js" defer></script>
+<script src="js/validator.js" defer></script>
+<script src="js/highlighter.js" defer></script>
+<script src="js/ui.js" defer></script>
+</body>
+</html>

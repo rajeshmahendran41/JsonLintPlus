@@ -1,0 +1,52 @@
+{
+  "name": "JSON Validator & Formatter",
+  "short_name": "JsonlintPlus",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#1e1e1e",
+  "theme_color": "#4CAF50",
+  "description": "Validate, format, and beautify your JSON instantly.",
+  "categories": ["productivity", "utilities", "developer-tools"],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/app-1.png",
+      "sizes": "1280x800",
+      "type": "image/png",
+      "label": "App UI"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Validate JSON",
+      "short_name": "Validate",
+      "url": "/?action=validate",
+      "description": "Validate JSON content"
+    },
+    {
+      "name": "Format JSON",
+      "short_name": "Format",
+      "url": "/?action=format",
+      "description": "Format JSON content"
+    }
+  ],
+  "dir": "ltr",
+  "lang": "en-US",
+  "prefer_related_applications": false
+}

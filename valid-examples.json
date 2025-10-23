@@ -1,0 +1,146 @@
+{
+  "simpleObject": {
+    "name": "John Doe",
+    "age": 30,
+    "city": "New York",
+    "isActive": true,
+    "balance": null
+  },
+  "nestedObject": {
+    "user": {
+      "id": 123,
+      "profile": {
+        "name": "Jane Smith",
+        "email": "jane@example.com",
+        "preferences": {
+          "theme": "dark",
+          "notifications": ["email", "push"],
+          "privacy": {
+            "public": false,
+            "dataSharing": true
+          }
+        }
+      }
+    }
+  },
+  "arrayExample": [
+    {
+      "id": 1,
+      "title": "First Item",
+      "tags": ["important", "featured"],
+      "metadata": {
+        "created": "2023-01-01",
+        "updated": "2023-01-15"
+      }
+    },
+    {
+      "id": 2,
+      "title": "Second Item",
+      "tags": ["draft"],
+      "metadata": {
+        "created": "2023-01-02",
+        "updated": null
+      }
+    }
+  ],
+  "complexArray": [
+    {
+      "type": "user",
+      "data": {
+        "id": 1,
+        "name": "Alice",
+        "roles": ["admin", "user"],
+        "permissions": {
+          "read": true,
+          "write": true,
+          "delete": false
+        }
+      }
+    },
+    {
+      "type": "system",
+      "data": {
+        "version": "1.0.0",
+        "features": [
+          {
+            "name": "validation",
+            "enabled": true
+          },
+          {
+            "name": "formatting",
+            "enabled": true
+          }
+        ]
+      }
+    }
+  ],
+  "apiResponse": {
+    "data": {
+      "users": [
+        {
+          "id": 1,
+          "name": "Alice",
+          "email": "alice@example.com"
+        },
+        {
+          "id": 2,
+          "name": "Bob",
+          "email": "bob@example.com"
+        }
+      ]
+    },
+    "pagination": {
+      "page": 1,
+      "limit": 10,
+      "total": 25,
+      "hasNext": true,
+      "hasPrev": false
+    },
+    "meta": {
+      "timestamp": "2023-01-15T12:00:00Z",
+      "version": "v1.0.0"
+    }
+  },
+  "edgeCases": {
+    "emptyObject": {},
+    "emptyArray": [],
+    "nullValue": null,
+    "booleanValues": {
+      "trueValue": true,
+      "falseValue": false
+    },
+    "numericValues": {
+      "integer": 42,
+      "float": 3.14,
+      "negative": -10,
+      "scientific": 1.5e-4,
+      "zero": 0
+    },
+    "stringEscapes": {
+      "quotes": "He said \"Hello\"",
+      "backslash": "C:\\Users\\John",
+      "newline": "Line 1\nLine 2",
+      "tab": "Column 1\tColumn 2",
+      "unicode": "Emoji: 🎉"
+    },
+    "deepNesting": {
+      "level1": {
+        "level2": {
+          "level3": {
+            "level4": {
+              "level5": {
+                "data": "deep value"
+              }
+            }
+          }
+        }
+      }
+    },
+    "largeArray": [
+      "item1", "item2", "item3", "item4", "item5",
+      "item6", "item7", "item8", "item9", "item10",
+      "item11", "item12", "item13", "item14", "item15",
+      "item16", "item17", "item18", "item19", "item20"
+    ]
+  }
+}

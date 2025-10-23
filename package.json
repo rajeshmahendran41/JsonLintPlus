@@ -1,0 +1,30 @@
+{
+  "name": "jsonlintplus",
+  "version": "1.0.0",
+  "private": true,
+  "description": "JSON Validator & Formatter - Enterprise-ready build",
+  "type": "module",
+  "scripts": {
+    "clean": "node ./scripts/build.mjs --clean",
+    "build": "node ./scripts/build.mjs",
+    "dev": "npx serve . -l 5173",
+    "preview": "npx serve ./dist -l 5173"
+  },
+  "devDependencies": {
+    "esbuild": "^0.23.0",
+    "clean-css": "^5.3.3",
+    "html-minifier-terser": "^7.2.0",
+    "fs-extra": "^11.2.0",
+    "glob": "^10.3.0",
+    "serve": "^14.2.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "browserslist": [
+    ">=0.25%",
+    "not dead",
+    "not IE 11"
+  ],
+  "license": "MIT"
+}

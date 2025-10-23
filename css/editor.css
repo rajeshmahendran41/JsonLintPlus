@@ -1,0 +1,191 @@
+/* Editor and highlighting styles */
+.content-area {
+  position: relative;
+  min-height: 400px;
+}
+
+/* Existing overlay behavior preserved for mode switching */
+.editor-wrapper, .output-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-wrapper { z-index: 1; }
+.output-wrapper { z-index: 2; opacity: 0; pointer-events: none; }
+.output-wrapper.active { opacity: 1; pointer-events: auto; }
+.editor-wrapper.hidden { opacity: 0; pointer-events: none; }
+
+/* New container that hosts line numbers and the editor/output content */
+.editor-container {
+  display: flex;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  height: 500px; /* Fixed height for consistent scrolling */
+  position: relative;
+  background: var(--bg-primary);
+}
+
+.line-numbers {
+  background-color: var(--bg-tertiary);
+  color: var(--text-muted);
+  padding: 10px 8px;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.5;
+  user-select: none;
+  min-width: 50px;
+  border-right: 1px solid var(--border-color);
+  overflow-y: hidden; /* Controlled by JS sync */
+  overflow-x: hidden; /* Never scroll horizontally */
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+
+.line-number {
+  line-height: 1.5;
+  height: 21px; /* Match content line height */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.editor-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Override scrolling and whitespace to ensure proper overflow behavior */
+.json-editor, .json-output {
+  flex: 1;
+  padding: 10px 15px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-x: auto;  /* Horizontal scroll for long lines */
+  overflow-y: auto;  /* Vertical scroll */
+  white-space: pre;  /* Preserve whitespace, enable horizontal scroll */
+  word-wrap: normal;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: var(--text-primary);
+  resize: none;
+}
+
+.json-output[contenteditable="true"] {
+  cursor: text;
+  white-space: pre; /* Preserve whitespace, enable horizontal scroll */
+  word-break: normal;
+  position: relative; /* Enable absolute-positioned overlays (error line) */
+}
+
+.json-output[contenteditable="true"]:focus {
+  background-color: var(--bg-secondary);
+  border-left: 2px solid var(--primary-color);
+}
+
+/* Custom scrollbar styling (optional) */
+.json-editor::-webkit-scrollbar, .json-output::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.json-editor::-webkit-scrollbar-track, .json-output::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+.json-editor::-webkit-scrollbar-thumb, .json-output::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 5px;
+}
+.json-editor::-webkit-scrollbar-thumb:hover, .json-output::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .editor-container { height: 400px; }
+  .line-numbers { min-width: 40px; font-size: 12px; }
+  .json-editor, .json-output { font-size: 12px; padding: 8px 10px; }
+  .line-number { height: 18px; }
+}
+
+/* Error highlighting styles */
+.error-line {
+  background-color: rgba(255, 0, 0, 0.1);
+  display: inline-block;
+  width: 100%;
+  border-left: 3px solid #f44336;
+  padding-left: 5px;
+  animation: errorPulse 0.5s ease-in-out;
+}
+
+@keyframes errorPulse {
+  0%, 100% {
+    background-color: rgba(255, 0, 0, 0.1);
+  }
+  50% {
+    background-color: rgba(255, 0, 0, 0.25);
+  }
+}
+
+/* Error line number highlighting */
+.line-number.error-line-number {
+  background-color: #f44336;
+  color: white;
+  font-weight: bold;
+  padding: 0 4px;
+  border-radius: 2px;
+}
+
+/* Error overlay (drawn above content without altering markup) */
+.error-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-color: rgba(244, 67, 54, 0.15);
+  border-left: 3px solid #f44336;
+  pointer-events: none;
+}
+
+/* Error marker at exact position (inverted, pointing down) */
+.error-marker {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid #f44336; /* triangle pointing down */
+  position: absolute;
+  animation: errorBlink 1s infinite;
+}
+
+@keyframes errorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+/* Partial formatting visuals */
+.unformatted-suffix {
+  color: var(--text-muted);
+  opacity: 0.9;
+}
+
+.error-caret {
+  position: absolute;
+  width: 2px;
+  background-color: #f44336;
+  animation: errorBlink 1s infinite;
+  z-index: 3;
+}
