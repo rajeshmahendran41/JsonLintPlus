@@ -166,14 +166,36 @@ function rewriteHtml(html, manifest) {
   ].filter(Boolean).join('\n    ');
 
   out = out.replace(/<head>([\s\S]*?)<\/head>/i, (match, inner) => {
-    const injected = `
+    // Avoid duplicating existing manifest/theme-color and keep GTM at the very top of <head>
+    const hasManifest = /<link[^>]+rel=["']manifest["'][^>]*>/i.test(inner) || /<link[^>]+rel=["']manifest["'][^>]*>/i.test(inner);
+    const hasThemeColor = /<meta[^>]+name=["']theme-color["'][^>]*>/i.test(inner) || /<meta[^>]+name=["']theme-color["'][^>]*>/i.test(inner);
+
+    const manifestTag = hasManifest ? '' : `<link rel="manifest" href="manifest.json">`;
+    const themeColorTag = hasThemeColor ? '' : `<meta name="theme-color" content="#4CAF50">`;
+
+    const buildBlock = `
     <!-- Build: hashed assets, preloads -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#4CAF50">
+    ${manifestTag}
+    ${themeColorTag}
     ${preloadTags}
-    ${inner}
   `;
-    return `<head>${injected}</head>`;
+
+    // If GTM is present, keep it first and insert build block immediately after it
+    const gtmMarker = '<!-- Google Tag Manager -->';
+    const gtmEndMarker = '<!-- End Google Tag Manager -->';
+    const gtmStart = inner.indexOf(gtmMarker);
+    if (gtmStart !== -1) {
+      const gtmEnd = inner.indexOf(gtmEndMarker, gtmStart);
+      const insertPos = gtmEnd !== -1 ? gtmEnd + gtmEndMarker.length : gtmStart;
+      const before = inner.slice(0, insertPos);
+      const after = inner.slice(insertPos);
+      return `<head>${before}
+    ${buildBlock}${after}</head>`;
+    }
+
+    // Default: prepend build block before existing head content
+    return `<head>${buildBlock}
+    ${inner}</head>`;
   });
 
   return out;
