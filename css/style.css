@@ -727,3 +727,69 @@ textarea:focus-visible {
   outline: 2px solid var(--primary-color);
   outline-offset: 2px;
 }
+/* Footer credit: right-aligned, theme-aware */
+.site-credit {
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  font-size: 0.875rem;
+  padding: 0.75rem 1rem;
+
+  /* Container alignment consistent with app-main */
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .site-credit {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.75rem;
+  }
+}
+/* Footer credit details: emphasize credit, subtle copyright, aligned to theme */
+.site-credit .credit {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.site-credit .copyright {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+/* Footer layout override: copyright left, credit right */
+.site-credit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: initial; /* override previous right alignment */
+}
+
+.site-credit .copyright {
+  order: 1;
+  margin-right: auto;
+  text-align: left;
+}
+
+.site-credit .credit {
+  order: 2;
+  margin-left: auto;
+  text-align: right;
+}
+
+@media (max-width: 600px) {
+  .site-credit {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .site-credit .credit,
+  .site-credit .copyright {
+    order: initial;
+    margin: 0;
+    text-align: left; /* stack and left-align on small screens */
+  }
+}
