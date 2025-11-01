@@ -28,16 +28,80 @@
     let currentError = null;
     let isPartialMode = false;
 
-    // Sample JSON
-    const sampleJSON = {
-      name: 'John Doe',
-      age: 30,
-      city: 'New York',
-      hobbies: ['reading', 'swimming', 'coding'],
-      address: { street: '123 Main St', zipCode: '10001' },
-      isActive: true,
-      balance: null
-    };
+    // Sample JSON - array of different samples
+    const sampleJSONs = [
+      {
+        name: 'John Doe',
+        age: 30,
+        city: 'New York',
+        hobbies: ['reading', 'swimming', 'coding'],
+        address: { street: '123 Main St', zipCode: '10001' },
+        isActive: true,
+        balance: null
+      },
+      {
+        products: [
+          { id: 1, name: 'Widget', price: 19.99, category: 'tools' },
+          { id: 2, name: 'Gadget', price: 29.99, category: 'electronics' },
+          { id: 3, name: 'Book', price: 12.99, category: 'books' }
+        ],
+        total: 62.97,
+        currency: 'USD'
+      },
+      {
+        user: {
+          profile: {
+            firstName: 'Jane',
+            lastName: 'Smith',
+            email: 'jane.smith@example.com'
+          },
+          settings: {
+            theme: 'dark',
+            notifications: true,
+            language: 'en'
+          },
+          preferences: {
+            categories: ['technology', 'science', 'art'],
+            maxItems: 50
+          }
+        },
+        lastLogin: '2024-11-01T10:30:00Z'
+      },
+      {
+        api: {
+          version: '1.0',
+          endpoints: [
+            { path: '/users', method: 'GET', auth: true },
+            { path: '/posts', method: 'POST', auth: true },
+            { path: '/comments', method: 'GET', auth: false }
+          ],
+          rateLimit: {
+            requests: 100,
+            period: 'hour'
+          }
+        },
+        status: 'active'
+      },
+      {
+        config: {
+          database: {
+            host: 'localhost',
+            port: 5432,
+            name: 'myapp',
+            credentials: {
+              username: 'admin',
+              password: 'secret'
+            }
+          },
+          features: {
+            logging: true,
+            caching: false,
+            analytics: true
+          },
+          environment: 'development'
+        }
+      }
+    ];
 
     // Event listeners
     if (elements.validateBtn) elements.validateBtn.addEventListener('click', validateJSON);
@@ -133,10 +197,7 @@
       });
     }
 
-    // Theme init
-    const savedTheme = localStorage.getItem('jsonValidatorTheme') || 'light';
-    document.body.setAttribute('data-theme', savedTheme);
-    updateThemeIcons(savedTheme);
+    // Theme initialization is handled by SettingsManager in main.js
 
     // Initialize line numbers and scroll sync
     updateLineNumbers();
@@ -287,19 +348,27 @@
     }
 
     function loadSampleJSON() {
-      const jsonString = JSON.stringify(sampleJSON, null, 2);
+      const randomIndex = Math.floor(Math.random() * sampleJSONs.length);
+      const selectedSample = sampleJSONs[randomIndex];
+      const jsonString = JSON.stringify(selectedSample, null, 2);
       elements.jsonInput.value = jsonString;
       updateInfoPanel();
       showNotification('Sample JSON loaded', 'success');
     }
 
     function toggleTheme() {
-      const currentTheme = document.body.getAttribute('data-theme');
-      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-      document.body.setAttribute('data-theme', newTheme);
-      localStorage.setItem('jsonValidatorTheme', newTheme);
-      updateThemeIcons(newTheme);
-      showNotification(`Switched to ${newTheme} theme`, 'success');
+      // Use SettingsManager if available (from main.js), otherwise fallback to localStorage
+      if (window.jsonValidatorApp && window.jsonValidatorApp.settings) {
+        window.jsonValidatorApp.toggleTheme();
+      } else {
+        // Fallback for pages without main.js
+        const currentTheme = document.body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        document.body.setAttribute('data-theme', newTheme);
+        localStorage.setItem('jsonValidatorTheme', newTheme);
+        updateThemeIcons(newTheme);
+        showNotification(`Switched to ${newTheme} theme`, 'success');
+      }
     }
 
     function updateThemeIcons(theme) {

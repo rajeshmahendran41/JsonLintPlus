@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KZ77CX29');</script>
+  <!-- End Google Tag Manager -->
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Introduction to JSON Schema Validation - Learn how to define data structures and validate complex JSON documents with JSON Schema.">
+  <meta name="keywords" content="json schema, json validation, data validation, json schema draft, structured data">
+  <title>Introduction to JSON Schema Validation - JSONLintPlus</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/images/logo.svg">
+  <link rel="apple-touch-icon" href="/images/logo.svg">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/theme.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KZ77CX29"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Header with navigation -->
+  <header class="site-header">
+    <div class="header-content">
+      <div class="logo">
+        <a href="/" class="logo-link">
+          <img src="/images/logo.svg" alt="JSONLintPlus" width="40" height="40">
+          <span class="logo-text">JSONLintPlus</span>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="/" class="nav-link">Validator</a>
+          </li>
+          <li class="nav-item">
+            <a href="/about" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="/blog" class="nav-link active">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a href="/tools" class="nav-link">Tools</a>
+          </li>
+          <li class="nav-item">
+            <a href="/api" class="nav-link">API Docs</a>
+          </li>
+        </ul>
+      </nav>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main id="main-content" class="app-main" role="main">
+    <article class="content-section blog-article">
+      <header class="article-header">
+        <h1>Introduction to JSON Schema Validation</h1>
+        <div class="article-meta">
+          <time datetime="2025-10-20">October 20, 2025</time>
+          <span class="reading-time">8 min read</span>
+          <span class="author">By JSONLintPlus Team</span>
+        </div>
+      </header>
+
+      <div class="article-content">
+        <p>JSON Schema is a powerful tool for validating the structure and content of JSON documents. It provides a way to define the expected format of your JSON data, making validation more robust and documentation more clear. This guide introduces JSON Schema and shows how to use it effectively.</p>
+
+        <h2>What is JSON Schema?</h2>
+        <p>JSON Schema is a vocabulary that allows you to annotate and validate JSON documents. It describes the structure of JSON data, specifying what properties are required, what types they should be, and any constraints they must satisfy.</p>
+
+        <p>Think of JSON Schema as a blueprint for your JSON data. Just as an architect uses a blueprint to ensure a building meets specifications, JSON Schema ensures your JSON data meets your application's requirements.</p>
+
+        <h2>Basic Schema Structure</h2>
+        <p>A JSON Schema is itself a JSON document that defines the rules for validating other JSON documents.</p>
+
+        <div class="schema-example">
+          <h4>Simple Schema:</h4>
+          <pre><code class="language-json">{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "age": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 150
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    }
+  },
+  "required": ["name", "email"]
+}</code></pre>
+
+          <h4>Valid JSON:</h4>
+          <pre><code class="language-json">{
+  "name": "John Doe",
+  "age": 30,
+  "email": "john@example.com"
+}</code></pre>
+        </div>
+
+        <h2>Schema Keywords</h2>
+
+        <h3>Type Validation</h3>
+        <p>The <code>type</code> keyword specifies the data type for a value.</p>
+
+        <div class="keyword-example">
+          <pre><code class="language-json">{
+  "type": "string",    // "hello"
+  "type": "number",    // 42, 3.14
+  "type": "integer",   // 42
+  "type": "boolean",   // true, false
+  "type": "object",    // { "key": "value" }
+  "type": "array",     // [1, 2, 3]
+  "type": "null"       // null
+}</code></pre>
+        </div>
+
+        <h3>String Constraints</h3>
+        <p>Control string length and format.</p>
+
+        <div class="keyword-example">
+          <pre><code class="language-json">{
+  "type": "string",
+  "minLength": 1,
+  "maxLength": 100,
+  "pattern": "^[A-Za-z]+$",
+  "format": "email"
+}</code></pre>
+        </div>
+
+        <h3>Number Constraints</h3>
+        <p>Set minimum and maximum values for numbers.</p>
+
+        <div class="keyword-example">
+          <pre><code class="language-json">{
+  "type": "number",
+  "minimum": 0,
+  "maximum": 100,
+  "exclusiveMinimum": 0,
+  "multipleOf": 5
+}</code></pre>
+        </div>
+
+        <h3>Array Validation</h3>
+        <p>Define array structure and constraints.</p>
+
+        <div class="keyword-example">
+          <pre><code class="language-json">{
+  "type": "array",
+  "minItems": 1,
+  "maxItems": 10,
+  "uniqueItems": true,
+  "items": {
+    "type": "string"
+  }
+}</code></pre>
+        </div>
+
+        <h3>Object Validation</h3>
+        <p>Define object properties and requirements.</p>
+
+        <div class="keyword-example">
+          <pre><code class="language-json">{
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "age": { "type": "integer" }
+  },
+  "required": ["name"],
+  "additionalProperties": false
+}</code></pre>
+        </div>
+
+        <h2>Advanced Schema Features</h2>
+
+        <h3>Conditional Validation</h3>
+        <p>Use <code>if</code>, <code>then</code>, and <code>else</code> for conditional validation.</p>
+
+        <div class="advanced-example">
+          <pre><code class="language-json">{
+  "type": "object",
+  "properties": {
+    "country": { "type": "string" },
+    "postalCode": { "type": "string" }
+  },
+  "if": {
+    "properties": { "country": { "const": "US" } }
+  },
+  "then": {
+    "properties": {
+      "postalCode": { "pattern": "^\\d{5}(-\\d{4})?$" }
+    }
+  }
+}</code></pre>
+        </div>
+
+        <h3>References and Reuse</h3>
+        <p>Use <code>$ref</code> to reference other schemas and avoid duplication.</p>
+
+        <div class="advanced-example">
+          <pre><code class="language-json">{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "address": {
+      "type": "object",
+      "properties": {
+        "street": { "type": "string" },
+        "city": { "type": "string" },
+        "zipCode": { "type": "string" }
+      },
+      "required": ["street", "city"]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "homeAddress": { "$ref": "#/definitions/address" },
+    "workAddress": { "$ref": "#/definitions/address" }
+  }
+}</code></pre>
+        </div>
+
+        <h2>Using JSON Schema with JSONLintPlus</h2>
+        <p>While JSONLintPlus focuses on syntax validation, you can combine it with JSON Schema libraries for comprehensive validation.</p>
+
+        <div class="integration-example">
+          <h4>JavaScript Example:</h4>
+          <pre><code class="language-javascript">const Ajv = require('ajv');
+const ajv = new Ajv();
+
+const schema = {
+  type: 'object',
+  properties: {
+    name: { type: 'string' },
+    age: { type: 'integer', minimum: 0 }
+  },
+  required: ['name']
+};
+
+const validate = ajv.compile(schema);
+
+// First validate syntax with JSONLintPlus
+const jsonString = '{"name": "John", "age": 30}';
+let data;
+
+try {
+  data = JSON.parse(jsonString);
+} catch (error) {
+  console.error('Invalid JSON syntax');
+  return;
+}
+
+// Then validate against schema
+const valid = validate(data);
+if (!valid) {
+  console.error('Schema validation failed:', validate.errors);
+} else {
+  console.log('JSON is valid!');
+}</code></pre>
+        </div>
+
+        <h2>Common Use Cases</h2>
+
+        <h3>API Request/Response Validation</h3>
+        <p>Ensure API requests and responses conform to expected formats.</p>
+
+        <h3>Configuration File Validation</h3>
+        <p>Validate application configuration files at startup.</p>
+
+        <h3>Data Import/Export Validation</h3>
+        <p>Ensure imported data meets quality standards.</p>
+
+        <h3>Form Data Validation</h3>
+        <p>Validate form submissions before processing.</p>
+
+        <h2>Best Practices</h2>
+
+        <h3>1. Start Simple</h3>
+        <p>Begin with basic type validation and gradually add constraints as needed.</p>
+
+        <h3>2. Use Descriptive Property Names</h3>
+        <p>Choose clear, descriptive names for your schema properties.</p>
+
+        <h3>3. Document Your Schemas</h3>
+        <p>Add descriptions to your schemas to make them self-documenting.</p>
+
+        <div class="documentation-example">
+          <pre><code class="language-json">{
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "User's email address for account verification"
+    }
+  }
+}</code></pre>
+        </div>
+
+        <h3>4. Version Your Schemas</h3>
+        <p>Use schema versioning to maintain backward compatibility.</p>
+
+        <h3>5. Test Your Schemas</h3>
+        <p>Create comprehensive test cases for your schemas, including edge cases.</p>
+
+        <h2>Schema Versions</h2>
+        <p>JSON Schema has evolved through several versions (drafts). Always specify which version you're using.</p>
+
+        <div class="versions-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Draft</th>
+                <th>Schema URI</th>
+                <th>Key Features</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Draft-04</td>
+                <td>http://json-schema.org/draft-04/schema#</td>
+                <td>Basic validation features</td>
+              </tr>
+              <tr>
+                <td>Draft-06</td>
+                <td>http://json-schema.org/draft-06/schema#</td>
+                <td>Format validation, constant values</td>
+              </tr>
+              <tr>
+                <td>Draft-07</td>
+                <td>http://json-schema.org/draft-07/schema#</td>
+                <td>if/then/else, content validation</td>
+              </tr>
+              <tr>
+                <td>Draft 2019-09</td>
+                <td>https://json-schema.org/draft/2019-09/schema</td>
+                <td>Unevaluated properties, dependent schemas</td>
+              </tr>
+              <tr>
+                <td>Draft 2020-12</td>
+                <td>https://json-schema.org/draft/2020-12/schema</td>
+                <td>Latest features and improvements</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Conclusion</h2>
+        <p>JSON Schema is a powerful tool for ensuring data quality and consistency in your applications. By defining clear schemas for your JSON data, you can catch errors early, improve API reliability, and create better documentation.</p>
+
+        <p>Start with basic schemas and gradually add complexity as your validation needs grow. Combine JSON Schema with syntax validation tools like JSONLintPlus for comprehensive JSON handling.</p>
+      </div>
+
+      <footer class="article-footer">
+        <div class="article-tags">
+          <span class="tag">JSON Schema</span>
+          <span class="tag">Validation</span>
+          <span class="tag">Data Structure</span>
+          <span class="tag">API</span>
+        </div>
+        <div class="article-navigation">
+          <a href="/blog/json-best-practices" class="nav-link">← Previous Article</a>
+          <a href="/blog/client-side-processing" class="nav-link">Next Article →</a>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <!-- Footer with internal links -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <div class="footer-column">
+          <h3>Product</h3>
+          <ul>
+            <li><a href="/">JSON Validator</a></li>
+            <li><a href="/features">Features</a></li>
+            <li><a href="/api">API Documentation</a></li>
+            <li><a href="/tools">Developer Tools</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/blog/json-validation-guide">JSON Guide</a></li>
+            <li><a href="/blog/common-json-errors">Common Errors</a></li>
+            <li><a href="/blog/json-best-practices">Best Practices</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/terms">Terms of Service</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Connect</h3>
+          <ul>
+            <li><a href="https://twitter.com/jsonlintplus" target="_blank" rel="noopener">Twitter</a></li>
+            <li><a href="https://github.com/jsonlintplus" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="/rss.xml">RSS Feed</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; 2025 JSONLintPlus.com</p>
+        <p class="footer-attribution">Created with ❤️ by RJ</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/theme-init.js"></script>
+  <script src="../js/main.js" defer></script>
+</body>
+</html>

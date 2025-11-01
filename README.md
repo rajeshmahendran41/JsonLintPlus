@@ -19,7 +19,7 @@ A lightweight, single-page static website that validates and formats JSON data e
 - **Mode Switching**: Smooth animations between input and output modes
 
 ### Advanced Features
-- **File Upload**: Drag-and-drop or browse to upload JSON files (up to 10MB)
+- **File Upload**: Drag-and-drop or browse to upload JSON files
 - **Export Options**: Download formatted JSON as a file
 - **Keyboard Shortcuts**: Productivity shortcuts for common actions
 - **URL Parameters**: Load JSON from URL parameters
@@ -117,7 +117,7 @@ project/
 - **Validation Speed**: < 100ms for 1MB JSON
 - **Formatting Speed**: < 500ms for 1MB JSON
 - **Memory Usage**: < 100MB for typical usage
-- **File Size Limit**: 10MB maximum file size
+- **File Size Limit**: No file size limit
 
 ## Security
 

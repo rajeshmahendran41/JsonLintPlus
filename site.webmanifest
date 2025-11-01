@@ -1,0 +1,52 @@
+{
+  "name": "JSONLintPlus - Free Online JSON Validator & Formatter",
+  "short_name": "JSONLintPlus",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#1e1e1e",
+  "theme_color": "#0066CC",
+  "description": "Validate, format, and beautify your JSON instantly with real-time error detection. 100% client-side processing for maximum privacy.",
+  "categories": ["productivity", "utilities", "developer-tools"],
+  "icons": [
+    {
+      "src": "/images/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/images/screenshot.png",
+      "sizes": "1280x800",
+      "type": "image/png",
+      "label": "JSONLintPlus - Free JSON Validator Tool"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Validate JSON",
+      "short_name": "Validate",
+      "url": "/?action=validate",
+      "description": "Validate JSON content"
+    },
+    {
+      "name": "Format JSON",
+      "short_name": "Format",
+      "url": "/?action=format",
+      "description": "Format JSON content"
+    }
+  ],
+  "dir": "ltr",
+  "lang": "en-US",
+  "prefer_related_applications": false
+}

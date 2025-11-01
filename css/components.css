@@ -400,3 +400,113 @@
 .tooltip:hover::after {
   opacity: 1;
 }
+
+/* Blog post styles */
+.blog-post h2 a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.blog-post h2 a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.blog-post h2 a:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  border-radius: var(--border-radius-sm);
+}
+
+/* Tool card styles */
+.tool-card h3 a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.tool-card h3 a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.tool-card h3 a:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  border-radius: var(--border-radius-sm);
+}
+
+/* Tool icon inline styles for blog-like layout */
+.tool-icon-inline {
+  display: inline-block;
+  margin-right: 0.5rem;
+  vertical-align: baseline;
+  color: var(--primary-color);
+  line-height: 1;
+}
+
+.tool-icon-inline svg {
+  display: inline-block;
+  vertical-align: baseline;
+  margin-bottom: 0.125rem;
+}
+
+/* Coming soon blog post styles */
+.blog-post.coming-soon {
+  opacity: 0.7;
+  position: relative;
+}
+
+.blog-post.coming-soon .coming-soon-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--primary-color);
+  color: var(--text-inverse);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--border-radius-sm);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Footer bottom styling */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-top: 1px solid var(--border-color);
+  margin-top: 2rem;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+.footer-copyright {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.footer-attribution {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+/* Mobile responsive footer */
+@media (max-width: 768px) {
+  .footer-bottom {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .footer-attribution {
+    font-size: 0.8rem;
+  }
+}
+
+

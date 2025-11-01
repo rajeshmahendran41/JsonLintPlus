@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KZ77CX29');</script>
+  <!-- End Google Tag Manager -->
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="10 Most Common JSON Errors and How to Fix Them - Learn to identify and resolve frequent JSON syntax errors with practical examples.">
+  <meta name="keywords" content="json errors, json syntax errors, json debugging, json validation errors">
+  <title>10 Most Common JSON Errors and How to Fix Them - JSONLintPlus</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/images/logo.svg">
+  <link rel="apple-touch-icon" href="/images/logo.svg">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/theme.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KZ77CX29"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Header with navigation -->
+  <header class="site-header">
+    <div class="header-content">
+      <div class="logo">
+        <a href="/" class="logo-link">
+          <img src="/images/logo.svg" alt="JSONLintPlus" width="40" height="40">
+          <span class="logo-text">JSONLintPlus</span>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="/" class="nav-link">Validator</a>
+          </li>
+          <li class="nav-item">
+            <a href="/about" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="/blog" class="nav-link active">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a href="/tools" class="nav-link">Tools</a>
+          </li>
+          <li class="nav-item">
+            <a href="/api" class="nav-link">API Docs</a>
+          </li>
+        </ul>
+      </nav>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main id="main-content" class="app-main" role="main">
+    <article class="content-section blog-article">
+      <header class="article-header">
+        <h1>10 Most Common JSON Errors and How to Fix Them</h1>
+        <div class="article-meta">
+          <time datetime="2025-10-28">October 28, 2025</time>
+          <span class="reading-time">7 min read</span>
+          <span class="author">By JSONLintPlus Team</span>
+        </div>
+      </header>
+
+      <div class="article-content">
+        <p>JSON syntax errors can be frustrating and time-consuming to debug. Even experienced developers make these mistakes. This guide covers the 10 most common JSON errors, with examples and solutions to help you fix them quickly.</p>
+
+        <h2>1. Missing or Extra Commas</h2>
+        <p><strong>Error:</strong> Objects and arrays require commas between elements, but not after the last element.</p>
+
+        <div class="error-example">
+          <h4>Incorrect:</h4>
+          <pre><code class="language-json">{
+  "name": "John",
+  "age": 30,
+}</code></pre>
+
+          <h4>Correct:</h4>
+          <pre><code class="language-json">{
+  "name": "John",
+  "age": 30
+}</code></pre>
+        </div>
+
+        <h2>2. Unquoted Object Keys</h2>
+        <p><strong>Error:</strong> All object keys must be strings enclosed in double quotes.</p>
+
+        <div class="error-example">
+          <h4>Incorrect:</h4>
+          <pre><code class="language-json">{
+  name: "John",
+  age: 30
+}</code></pre>
+
+          <h4>Correct:</h4>
+          <pre><code class="language-json">{
+  "name": "John",
+  "age": 30
+}</code></pre>
+        </div>
+
+        <h2>3. Invalid String Escaping</h2>
+        <p><strong>Error:</strong> Special characters in strings must be properly escaped.</p>
+
+        <div class="error-example">
+          <h4>Incorrect:</h4>
+          <pre><code class="language-json">{
+  "message": "Hello "World"!"
+}</code></pre>
+
+          <h4>Correct:</h4>
+          <pre><code class="language-json">{
+  "message": "Hello \"World\"!"
+}</code></pre>
+        </div>
+
+        <h2>4. Mismatched Brackets</h2>
+        <p><strong>Error:</strong> Every opening bracket must have a corresponding closing bracket.</p>
+
+        <div class="error-example">
+          <h4>Incorrect:</h4>
+          <pre><code class="language-json">{
+  "items": ["apple", "banana"
+}</code></pre>
+
+          <h4>Correct:</h4>
+          <pre><code class="language-json">{
+  "items": ["apple", "banana"]
+}</code></pre>
+        </div>
+
+        <h2>5. Trailing Commas</h2>
+        <p><strong>Error:</strong> JSON doesn't allow commas after the last item in objects or arrays.</p>
+
+        <div class="error-example">
+          <h4>Incorrect:</h4>
+          <pre><code class="language-json">{
+  "name": "John",
+  "age": 30,
+}</code></pre>
+
+          <h4>Correct:</h4>
+          <pre><code class="language-json">{
+  "name": "John",
+  "age": 30
+}</code></pre>
+        </div>
+
+        <h2>6. Invalid Number Format</h2>
+        <p><strong>Error:</strong> Numbers cannot have leading zeros (except for 0) and must follow JavaScript number syntax.</p>
+
+        <div class="error-example">
+          <h4>Incorrect:</h4>
+          <pre><code class="language-json">{
+  "price": 099.99,
+  "version": 1.2.3
+}</code></pre>
+
+          <h4>Correct:</h4>
+          <pre><code class="language-json">{
+  "price": 99.99,
+  "version": "1.2.3"
+}</code></pre>
+        </div>
+
+        <h2>7. Single Quotes Instead of Double Quotes</h2>
+        <p><strong>Error:</strong> JSON only accepts double quotes for strings and keys.</p>
+
+        <div class="error-example">
+          <h4>Incorrect:</h4>
+          <pre><code class="language-json">{
+  'name': 'John',
+  "age": 30
+}</code></pre>
+
+          <h4>Correct:</h4>
+          <pre><code class="language-json">{
+  "name": "John",
+  "age": 30
+}</code></pre>
+        </div>
+
+        <h2>8. Comments in JSON</h2>
+        <p><strong>Error:</strong> JSON doesn't support comments. Remove all comments before parsing.</p>
+
+        <div class="error-example">
+          <h4>Incorrect:</h4>
+          <pre><code class="language-json">{
+  // This is a comment
+  "name": "John",
+  "age": 30
+}</code></pre>
+
+          <h4>Correct:</h4>
+          <pre><code class="language-json">{
+  "name": "John",
+  "age": 30
+}</code></pre>
+        </div>
+
+        <h2>9. Invalid Boolean Values</h2>
+        <p><strong>Error:</strong> Boolean values must be lowercase "true" or "false".</p>
+
+        <div class="error-example">
+          <h4>Incorrect:</h4>
+          <pre><code class="language-json">{
+  "active": True,
+  "disabled": FALSE
+}</code></pre>
+
+          <h4>Correct:</h4>
+          <pre><code class="language-json">{
+  "active": true,
+  "disabled": false
+}</code></pre>
+        </div>
+
+        <h2>10. Null Value Issues</h2>
+        <p><strong>Error:</strong> The null value must be lowercase.</p>
+
+        <div class="error-example">
+          <h4>Incorrect:</h4>
+          <pre><code class="language-json">{
+  "middleName": NULL,
+  "spouse": none
+}</code></pre>
+
+          <h4>Correct:</h4>
+          <pre><code class="language-json">{
+  "middleName": null,
+  "spouse": null
+}</code></pre>
+        </div>
+
+        <h2>How JSONLintPlus Helps</h2>
+        <p>JSONLintPlus catches all these errors instantly with:</p>
+        <ul>
+          <li>Precise error location (line and column numbers)</li>
+          <li>Clear, actionable error messages</li>
+          <li>Real-time validation as you type</li>
+          <li>Automatic error highlighting</li>
+        </ul>
+
+        <h2>Prevention Tips</h2>
+        <ul>
+          <li>Use a JSON validator during development</li>
+          <li>Enable syntax highlighting in your code editor</li>
+          <li>Use JSON Schema for complex data structures</li>
+          <li>Test your JSON with multiple parsers</li>
+          <li>Use linters that check for common JSON issues</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>Most JSON errors follow common patterns that are easy to spot once you know what to look for. By understanding these 10 most common errors and using tools like JSONLintPlus, you can significantly reduce debugging time and prevent JSON-related issues in your applications.</p>
+
+        <p>Remember: when in doubt, validate your JSON!</p>
+      </div>
+
+      <footer class="article-footer">
+        <div class="article-tags">
+          <span class="tag">JSON</span>
+          <span class="tag">Errors</span>
+          <span class="tag">Debugging</span>
+          <span class="tag">Syntax</span>
+        </div>
+        <div class="article-navigation">
+          <a href="/blog/json-validation-guide" class="nav-link">← Previous Article</a>
+          <a href="/blog/json-best-practices" class="nav-link">Next Article →</a>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <!-- Footer with internal links -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <div class="footer-column">
+          <h3>Product</h3>
+          <ul>
+            <li><a href="/">JSON Validator</a></li>
+            <li><a href="/features">Features</a></li>
+            <li><a href="/api">API Documentation</a></li>
+            <li><a href="/tools">Developer Tools</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/blog/json-validation-guide">JSON Guide</a></li>
+            <li><a href="/blog/common-json-errors">Common Errors</a></li>
+            <li><a href="/blog/json-best-practices">Best Practices</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/terms">Terms of Service</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Connect</h3>
+          <ul>
+            <li><a href="https://twitter.com/jsonlintplus" target="_blank" rel="noopener">Twitter</a></li>
+            <li><a href="https://github.com/jsonlintplus" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="/rss.xml">RSS Feed</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; 2025 JSONLintPlus.com</p>
+        <p class="footer-attribution">Created with ❤️ by RJ</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/theme-init.js"></script>
+  <script src="../js/main.js" defer></script>
+</body>
+</html>

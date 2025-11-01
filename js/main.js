@@ -30,20 +30,85 @@ class JSONValidatorApp {
     this.fileHandler = new FileHandler();
     this.urlHandler = new URLHandler();
     this.keyboard = new KeyboardShortcuts();
+
     
-    // Sample JSON data
-    this.sampleJSON = {
-      name: "John Doe",
-      age: 30,
-      city: "New York",
-      hobbies: ["reading", "swimming", "coding"],
-      address: {
-        street: "123 Main St",
-        zipCode: "10001"
+    // Sample JSON data - array of different samples
+    this.sampleJSONs = [
+      {
+        name: "John Doe",
+        age: 30,
+        city: "New York",
+        hobbies: ["reading", "swimming", "coding"],
+        address: {
+          street: "123 Main St",
+          zipCode: "10001"
+        },
+        isActive: true,
+        balance: null
       },
-      isActive: true,
-      balance: null
-    };
+      {
+        products: [
+          { id: 1, name: "Widget", price: 19.99, category: "tools" },
+          { id: 2, name: "Gadget", price: 29.99, category: "electronics" },
+          { id: 3, name: "Book", price: 12.99, category: "books" }
+        ],
+        total: 62.97,
+        currency: "USD"
+      },
+      {
+        user: {
+          profile: {
+            firstName: "Jane",
+            lastName: "Smith",
+            email: "jane.smith@example.com"
+          },
+          settings: {
+            theme: "dark",
+            notifications: true,
+            language: "en"
+          },
+          preferences: {
+            categories: ["technology", "science", "art"],
+            maxItems: 50
+          }
+        },
+        lastLogin: "2024-11-01T10:30:00Z"
+      },
+      {
+        api: {
+          version: "1.0",
+          endpoints: [
+            { path: "/users", method: "GET", auth: true },
+            { path: "/posts", method: "POST", auth: true },
+            { path: "/comments", method: "GET", auth: false }
+          ],
+          rateLimit: {
+            requests: 100,
+            period: "hour"
+          }
+        },
+        status: "active"
+      },
+      {
+        config: {
+          database: {
+            host: "localhost",
+            port: 5432,
+            name: "myapp",
+            credentials: {
+              username: "admin",
+              password: "secret"
+            }
+          },
+          features: {
+            logging: true,
+            caching: false,
+            analytics: true
+          },
+          environment: "development"
+        }
+      }
+    ];
     
     this.init();
   }
@@ -57,28 +122,63 @@ class JSONValidatorApp {
       if (document.readyState === 'loading') {
         await new Promise(resolve => document.addEventListener('DOMContentLoaded', resolve));
       }
-      
+
+      // Setup mobile menu
+      this.setupMobileMenu();
+
       // Setup event listeners
       this.setupEventListeners();
       this.setupModuleListeners();
-      
+
       // Apply saved settings
       this.applySettings();
-      
+
       // Load initial data
       await this.loadInitialData();
-      
+
       // Initialize CodeMirror if available
       await this.initializeCodeMirror();
-      
+
       // Update UI
       this.updateInfoPanel();
       this.ui.clearStatus();
-      
+
       console.log('JSON Validator & Formatter initialized successfully');
     } catch (error) {
       console.error('Failed to initialize application:', error);
       this.ui.showError('Failed to initialize application. Please refresh the page.');
+    }
+  }
+
+  /**
+   * Setup mobile menu functionality
+   */
+  setupMobileMenu() {
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const mainNav = document.querySelector('.main-nav');
+
+    if (mobileMenuToggle && mainNav) {
+      mobileMenuToggle.addEventListener('click', () => {
+        mainNav.classList.toggle('open');
+        mobileMenuToggle.setAttribute('aria-expanded',
+          mainNav.classList.contains('open').toString());
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!mainNav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+          mainNav.classList.remove('open');
+          mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Close menu when clicking on a link
+      mainNav.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') {
+          mainNav.classList.remove('open');
+          mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
     }
   }
 
@@ -310,38 +410,39 @@ class JSONValidatorApp {
    */
   async validateJSON(silent = false) {
     const startTime = performance.now();
-    
+
     try {
       this.state.validationResult = this.validator.validate(this.state.jsonInput);
       const endTime = performance.now();
       const parseTime = endTime - startTime;
-      
+
       if (this.state.validationResult.isValid) {
         this.state.jsonOutput = this.state.validationResult.formatted;
         this.ui.setOutputContent(this.state.jsonOutput);
         this.ui.switchMode('output');
-        
+
         if (!silent) {
           this.ui.showSuccess('✓ Valid JSON');
         }
-        
+
         this.ui.updateStatusBar({
           type: 'valid',
           text: '✓ Valid JSON',
           size: new Blob([this.state.jsonInput]).size,
           parseTime
         });
+
       } else {
         if (!silent) {
           this.ui.showError(this.state.validationResult.error);
         }
-        
+
         this.ui.switchMode('input');
         this.ui.highlightError(
           this.state.validationResult.line,
           this.state.validationResult.column
         );
-        
+
         this.ui.updateStatusBar({
           type: 'invalid',
           text: '✗ Invalid JSON',
@@ -349,12 +450,13 @@ class JSONValidatorApp {
           parseTime
         });
       }
-      
+
       this.state.lastValidationTime = parseTime;
     } catch (error) {
       this.ui.showError('Validation error: ' + error.message);
     }
   }
+
 
   /**
    * Format/Beautify JSON
@@ -461,7 +563,9 @@ class JSONValidatorApp {
    * Load sample JSON
    */
   loadSampleJSON() {
-    const jsonString = JSON.stringify(this.sampleJSON, null, 2);
+    const randomIndex = Math.floor(Math.random() * this.sampleJSONs.length);
+    const selectedSample = this.sampleJSONs[randomIndex];
+    const jsonString = JSON.stringify(selectedSample, null, 2);
     this.state.jsonInput = jsonString;
     this.setEditorContent(jsonString);
     this.updateInfoPanel();

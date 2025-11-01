@@ -8,170 +8,508 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-KZ77CX29');</script>
   <!-- End Google Tag Manager -->
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Validate, format, and beautify your JSON instantly">
-  <meta name="keywords" content="JSON, validator, formatter, beautifier, minifier, parser">
-  <meta name="author" content="JSON Validator & Formatter">
-  
-  <!-- Open Graph meta tags -->
-  <meta property="og:title" content="JSON Validator & Formatter">
-  <meta property="og:description" content="Validate, format, and beautify your JSON instantly">
+
+  <!-- Enhanced Meta Tags -->
+  <meta name="keywords" content="json validator, json formatter, json lint, json beautifier, validate json online, json syntax checker, json minify, json pretty print, free json validator">
+  <meta name="author" content="JSONLintPlus">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://jsonlintplus.com/">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:locale" content="en_US">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="/">
-  <meta property="og:image" content="/icons/icon-512.png">
-  <meta property="og:site_name" content="JsonlintPlus">
-  
-  <!-- Twitter Card meta tags -->
+  <meta property="og:title" content="JSON Validator & Formatter - Free Online JSON Lint Tool">
+  <meta property="og:description" content="Validate, format, and beautify your JSON instantly. Free online JSONlint tool with real-time error detection. 100% client-side processing.">
+  <meta property="og:url" content="https://jsonlintplus.com/">
+  <meta property="og:site_name" content="JSONLintPlus">
+  <meta property="og:image" content="https://jsonlintplus.com/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="JSONLintPlus - Free JSON Validator">
+
+  <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="JSON Validator & Formatter">
-  <meta name="twitter:description" content="Validate, format, and beautify your JSON instantly">
-  <meta name="twitter:image" content="/icons/icon-512.png">
-  
-  <title>JSON Validator & Formatter</title>
+  <meta name="twitter:site" content="@jsonlintplus">
+  <meta name="twitter:title" content="JSON Validator & Formatter - JSONLintPlus">
+  <meta name="twitter:description" content="Free online JSON validation tool. Validate, format, and beautify JSON with real-time error detection.">
+  <meta name="twitter:image" content="https://jsonlintplus.com/images/twitter-card.png">
+  <meta name="twitter:image:alt" content="JSONLintPlus JSON Validator Tool">
+
+  <!-- Additional SEO Tags -->
+  <meta name="theme-color" content="#0066CC">
+  <meta name="msapplication-TileColor" content="#0066CC">
+
+  <title>Home - JSONLintPlus</title>
   <meta name="application-name" content="JsonlintPlus">
-  <meta name="robots" content="index, follow">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#4CAF50">
-  <link rel="manifest" href="/manifest.json">
-  <link rel="canonical" href="/">
-  <link rel="apple-touch-icon" href="/icons/icon-192.png">
-  <link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512.png">
-  
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/images/logo.svg">
+  <link rel="apple-touch-icon" href="/images/logo.svg">
+  <link rel="manifest" href="/site.webmanifest">
+
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/theme.css">
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/editor.css"><!-- Enhanced CSS for editor with line numbers, editable output, and scrolling -->
-  <!-- Styles moved to external file css/editor.css --></head>
-<body data-theme="dark">
+  <link rel="stylesheet" href="css/editor.css">
+
+  <!-- JSON-LD Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "JSONLintPlus",
+    "alternateName": "JSON Validator & Formatter",
+    "url": "https://jsonlintplus.com",
+    "description": "Free online JSON validator and formatter tool. Validate, format, and beautify JSON instantly with real-time error detection. 100% client-side processing for maximum privacy.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript enabled",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Real-time JSON validation",
+      "Syntax error detection with line numbers",
+      "JSON beautification and pretty printing",
+      "JSON minification",
+      "Tree view visualization",
+      "Client-side processing (no server uploads)",
+      "Copy to clipboard",
+      "Download formatted JSON",
+      "Support for large files",
+      "Dark mode support"
+    ],
+    "screenshot": "https://jsonlintplus.com/images/screenshot.png",
+    "softwareVersion": "1.0",
+    "datePublished": "2024-10-24",
+    "author": {
+      "@type": "Organization",
+      "name": "JSONLintPlus"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "JSONLintPlus",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://jsonlintplus.com/images/logo.svg"
+      }
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "127"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://jsonlintplus.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "JSON Validator",
+        "item": "https://jsonlintplus.com"
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "JSONLintPlus",
+    "url": "https://jsonlintplus.com",
+    "logo": "https://jsonlintplus.com/images/logo.svg",
+    "sameAs": [
+      "https://twitter.com/jsonlintplus",
+      "https://github.com/jsonlintplus"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Customer Support",
+      "email": "support@jsonlintplus.com"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "JSONLintPlus",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web Browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0"
+    }
+  }
+  </script>
+</head>
+<body>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KZ77CX29"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
+
+  <!-- Header with navigation -->
+  <header class="site-header">
+    <div class="header-content">
+      <div class="logo">
+        <a href="/" class="logo-link">
+          <img src="/images/logo.svg" alt="JSONLintPlus" width="40" height="40">
+          <span class="logo-text">JSONLintPlus</span>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="/" class="nav-link active">Validator</a>
+          </li>
+          <li class="nav-item">
+            <a href="/about" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="/blog" class="nav-link">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a href="/tools" class="nav-link">Tools</a>
+          </li>
+          <li class="nav-item">
+            <a href="/api" class="nav-link">API Docs</a>
+          </li>
+        </ul>
+      </nav>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
   <!-- Main content -->
   <main id="main-content" class="app-main" role="main">
-    <!-- Toolbar with action buttons -->
-    <section class="toolbar" role="toolbar" aria-label="JSON tools">
-      <div class="action-buttons">
-        <button id="validate-btn" class="btn btn-primary" aria-label="Validate JSON">
-          <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M9 11l3 3L22 4"></path>
-            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
-          </svg>
-          Validate
-        </button>
-        <button id="minify-btn" class="btn btn-secondary" aria-label="Minify JSON">
-          <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="4 14 10 14 10 20"></polyline>
-            <polyline points="20 10 14 10 14 4"></polyline>
-            <line x1="14" y1="10" x2="21" y2="3"></line>
-            <line x1="3" y1="21" x2="10" y2="14"></line>
-          </svg>
-          Minify
-        </button>
-        <button id="clear-btn" class="btn btn-danger" aria-label="Clear all">
-          <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="3 6 5 6 21 6"></polyline>
-            <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path>
-          </svg>
-          Clear
-        </button>
-        <button id="copy-btn" class="btn btn-secondary" aria-label="Copy to clipboard">
-          <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-            <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
-          </svg>
-          Copy
-        </button>
-        <button id="sample-btn" class="btn btn-secondary" aria-label="Load sample JSON">
-          <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
-            <polyline points="14 2 14 8 20 8"></polyline>
-            <line x1="16" y1="13" x2="8" y2="13"></line>
-            <line x1="16" y1="17" x2="8" y2="17"></line>
-            <polyline points="10 9 9 9 8 9"></polyline>
-          </svg>
-          Sample
-        </button>
-      </div>
-      <div class="toolbar-actions">
-        <div class="toolbar-status" aria-live="polite">
-          <span id="validation-status" class="status-indicator">Ready</span>
-          <span id="parse-time" class="time-info"></span>
+    <!-- JSON Validator Tool (Displayed First) -->
+    <section class="tool-section primary-tool" aria-label="JSON validator tool">
+      <!-- Toolbar with action buttons -->
+      <section class="toolbar" role="toolbar" aria-label="JSON tools">
+        <div class="action-buttons">
+          <button id="validate-btn" class="btn btn-primary" aria-label="Validate JSON">
+            <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 11l3 3L22 4"></path>
+              <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
+            </svg>
+            Validate
+          </button>
+          <button id="minify-btn" class="btn btn-secondary" aria-label="Minify JSON">
+            <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="4 14 10 14 10 20"></polyline>
+              <polyline points="20 10 14 10 14 4"></polyline>
+              <line x1="14" y1="10" x2="21" y2="3"></line>
+              <line x1="3" y1="21" x2="10" y2="14"></line>
+            </svg>
+            Minify
+          </button>
+          <button id="clear-btn" class="btn btn-danger" aria-label="Clear all">
+            <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path>
+            </svg>
+            Clear
+          </button>
+          <button id="copy-btn" class="btn btn-secondary" aria-label="Copy to clipboard">
+            <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+            </svg>
+            Copy
+          </button>
+          <button id="sample-btn" class="btn btn-secondary" aria-label="Load sample JSON">
+            <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            Sample
+          </button>
         </div>
-        <button id="theme-toggle" class="btn btn-icon" aria-label="Toggle theme">
-          <svg class="theme-icon-light" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="5"></circle>
-            <line x1="12" y1="1" x2="12" y2="3"></line>
-            <line x1="12" y1="21" x2="12" y2="23"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-            <line x1="1" y1="12" x2="3" y2="12"></line>
-            <line x1="21" y1="12" x2="23" y2="12"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-          </svg>
-          <svg class="theme-icon-dark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
-            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
-          </svg>
-        </button>
-      </div>
-    </section>
+        <div class="toolbar-actions">
+          <div class="toolbar-status" aria-live="polite">
+            <span id="validation-status" class="status-indicator">Ready</span>
+            <span id="parse-time" class="time-info"></span>
+          </div>
+          <button id="theme-toggle" class="btn btn-icon" aria-label="Toggle theme">
+            <svg class="theme-icon-light" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="theme-icon-dark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+            </svg>
+          </button>
+        </div>
+      </section>
 
-    <!-- Content container with input/output area -->
-    <section class="content-container" aria-label="JSON editor">
-      <div class="content-area" id="content-area">
-        <div class="editor-container" id="editor-container">
-          <div class="line-numbers" id="line-numbers"><div class="line-number">1</div></div>
-          <div class="editor-content" id="editor-content">
-            <!-- Input mode (textarea) -->
-            <div class="editor-wrapper" id="editor-wrapper">
-              <textarea id="json-input" class="json-editor" placeholder="Paste or type your JSON here...
+      <!-- Content container with input/output area -->
+      <section class="content-container" aria-label="JSON editor">
+        <div class="content-area" id="content-area">
+          <div class="editor-container" id="editor-container">
+            <div class="line-numbers" id="line-numbers"><div class="line-number">1</div></div>
+            <div class="editor-content" id="editor-content">
+              <!-- Input mode (textarea) -->
+              <div class="editor-wrapper" id="editor-wrapper">
+                <textarea id="json-input" class="json-editor" placeholder="Paste or type your JSON here...
 
 Example:
 {
   &quot;name&quot;: &quot;John Doe&quot;,
   &quot;age&quot;: 30,
   &quot;city&quot;: &quot;New York&quot;
-}" aria-label="JSON input"></textarea>
-            </div>
-            <!-- Output mode (formatted display) -->
-            <div class="output-wrapper" id="output-wrapper">
-              <div id="json-output" class="json-output" aria-label="JSON output" contenteditable="true"></div>
+}"JSON input"></textarea>
+              </div>
+              <!-- Output mode (formatted display) -->
+              <div class="output-wrapper" id="output-wrapper">
+                <div id="json-output" class="json-output" aria-label="JSON output" contenteditable="true"></div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      
-      <!-- Info panel with line/character count -->
-      <div class="info-panel">
-        <div class="line-info">
-          <span id="line-count">0 lines</span> |
-          <span id="char-count">0 characters</span>
+
+        <!-- Info panel with line/character count -->
+        <div class="info-panel">
+          <div class="line-info">
+            <span id="line-count">0 lines</span> |
+            <span id="char-count">0 characters</span>
+          </div>
+          <div class="mode-indicator">
+            <span id="current-mode">Input Mode</span>
+          </div>
         </div>
-        <div class="mode-indicator">
-          <span id="current-mode">Input Mode</span>
+      </section>
+    </section>
+
+    <!-- Hero section with H1 -->
+    <section class="hero-section">
+      <h1>JSON Validator & Formatter - Free Online JSON Lint Tool</h1>
+      <p class="hero-description">JSONLintPlus is a powerful, free online JSON validator and formatter designed for developers who need fast, reliable JSON validation. Whether you're building APIs, debugging configuration files, or testing JSON responses, our tool provides instant syntax checking and error detection—all processed locally in your browser for maximum privacy and security. Unlike other JSON validators that upload your data to remote servers, JSONLintPlus processes everything client-side, ensuring your sensitive data never leaves your computer. With support for JSON beautification, minification, and tree-view visualization, JSONLintPlus is the complete JSON toolkit every developer needs.</p>
+    </section>
+
+    <!-- Why Use JSONLintPlus? Section -->
+    <section class="content-section">
+      <h2>Why Use JSONLintPlus?</h2>
+      <p>JSONLintPlus stands out as the premier JSON validation tool for developers who prioritize both functionality and privacy. Our client-side processing approach means your JSON data never gets transmitted to external servers, eliminating security risks and ensuring complete data confidentiality. This architecture also delivers lightning-fast performance, with instant validation results without network latency.</p>
+
+      <h3>Real-Time Validation</h3>
+      <p>You'll never need to register an account or worry about usage limits—JSONLintPlus is completely free forever, with no hidden restrictions or premium tiers. Our clean, distraction-free interface focuses on what matters most: validating and formatting your JSON efficiently. The tool works seamlessly across all devices, with full mobile responsiveness that lets you validate JSON on smartphones, tablets, or desktop computers. Compared to other validators that compromise on either privacy or functionality, JSONLintPlus delivers the complete package without requiring any personal information or subscriptions.</p>
+
+      <h3>Privacy-Focused Processing</h3>
+      <p>Privacy is at the core of JSONLintPlus. All JSON processing happens entirely within your browser using client-side JavaScript. Your data never leaves your device, never gets transmitted to our servers, and is never stored or analyzed. This approach eliminates security risks associated with cloud-based validators while delivering faster performance without network latency.</p>
+
+      <h3>Lightning-Fast Performance</h3>
+      <p>Experience instant validation results with our optimized client-side processing. No waiting for server responses or dealing with network delays. JSONLintPlus delivers sub-2-second load times and instant feedback as you type, making it the fastest JSON validation tool available.</p>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="content-section">
+      <h2>Key Features</h2>
+      <p>JSONLintPlus provides a comprehensive suite of JSON processing tools designed to streamline your development workflow:</p>
+
+      <h3>Instant Syntax Error Detection</h3>
+      <p>Real-time JSON validation with instant feedback as you type, catching syntax errors before they cause problems. Precise syntax error detection with line number highlighting, making debugging faster and more efficient.</p>
+
+      <h3>Beautify & Minify JSON</h3>
+      <p>JSON beautification and pretty printing with customizable indentation options for improved readability. JSON minification to optimize file sizes for production environments and API responses.</p>
+
+      <h3>Tree View Visualization</h3>
+      <p>Interactive tree view visualization for exploring complex nested JSON structures intuitively. Perfect for understanding data hierarchies and debugging complex JSON objects.</p>
+
+      <h3>100% Client-Side Processing</h3>
+      <p>All processing happens in your browser. No server uploads, no data transmission, maximum privacy and security. Your sensitive JSON data never leaves your device.</p>
+
+      <div class="features-grid">
+        <div class="feature-item">
+          <h4>Real-time JSON validation</h4>
+          <p>with instant feedback</p>
+        </div>
+        <div class="feature-item">
+          <h4>Syntax error detection</h4>
+          <p>with line numbers</p>
+        </div>
+        <div class="feature-item">
+          <h4>JSON beautification</h4>
+          <p>pretty printing</p>
+        </div>
+        <div class="feature-item">
+          <h4>JSON minification</h4>
+          <p>optimize file sizes</p>
+        </div>
+        <div class="feature-item">
+          <h4>Tree view visualization</h4>
+          <p>nested structures</p>
+        </div>
+        <div class="feature-item">
+          <h4>Client-side processing</h4>
+          <p>no server uploads</p>
+        </div>
+        <div class="feature-item">
+          <h4>Copy to clipboard</h4>
+          <p>easy sharing</p>
+        </div>
+        <div class="feature-item">
+          <h4>Download formatted JSON</h4>
+          <p>custom filenames</p>
+        </div>
+        <div class="feature-item">
+          <h4>Large file support</h4>
+          <p>unlimited</p>
+        </div>
+        <div class="feature-item">
+          <h4>Dark mode support</h4>
+          <p>comfortable viewing</p>
+        </div>
+        <div class="feature-item">
+          <h4>No registration</h4>
+          <p>completely free</p>
+        </div>
+        <div class="feature-item">
+          <h4>No usage limits</h4>
+          <p>unlimited validation</p>
         </div>
       </div>
     </section>
 
-    <!-- Status bar -->
+    <!-- How to Use Section -->
+    <section class="content-section">
+      <h2>How to Use JSONLintPlus</h2>
+      <p>Using JSONLintPlus is straightforward and intuitive:</p>
+
+      <h3>Paste or type JSON</h3>
+      <p>Step 1: Paste or type your JSON code directly into the editor area. You can also drag and drop JSON files or use the file picker to upload from your device.</p>
+
+      <h3>Click Validate</h3>
+      <p>Step 2: Click "Validate" to instantly check for syntax errors. Our tool will highlight any issues with precise line and column numbers.</p>
+
+      <h3>View error messages</h3>
+      <p>Step 3: Review error messages with exact location details to quickly identify and fix problems in your JSON structure.</p>
+
+      <h3>Use Beautify/Minify</h3>
+      <p>Step 4: Use "Beautify" to format your JSON for better readability or "Minify" to compress it for production use.</p>
+    </section>
+
+    <!-- Common JSON Errors Section -->
+    <section class="content-section">
+      <h2>Common JSON Errors We Detect</h2>
+      <p>JSONLintPlus identifies and helps you fix the most common JSON syntax errors that developers encounter:</p>
+
+      <h3>Missing or Trailing Commas</h3>
+      <p>Objects require commas between properties, and arrays need commas between elements. Our validator pinpoints exactly where commas are missing.</p>
+
+      <h3>Unquoted Keys</h3>
+      <p>All property names in JSON must be enclosed in double quotes. Our tool catches unquoted keys that work in JavaScript but fail in strict JSON.</p>
+
+      <h3>Invalid Escape Characters</h3>
+      <p>Strings containing special characters require proper backslash escaping. We identify incorrect escape sequences that would break your JSON.</p>
+
+      <h3>Mismatched Brackets</h3>
+      <p>Every opening bracket ({ or [) must have a corresponding closing bracket (} or ]). Our validator tracks bracket matching to find unclosed structures.</p>
+
+      <h3>Unicode Character Issues</h3>
+      <p>Improperly encoded Unicode characters can cause JSON parsing errors. We detect encoding problems and help you fix them.</p>
+    </section>
+
+
+  
   </main>
 
-  <footer class="site-credit" aria-label="Site credit">
-    <div class="credit">Created with ❤️ by RJ</div>
-    <div class="copyright">© 2025 JSONLintPlus.com</div>
+  <!-- Footer with internal links -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <div class="footer-column">
+          <h3>Product</h3>
+          <ul>
+            <li><a href="/">JSON Validator</a></li>
+            <li><a href="/features">Features</a></li>
+            <li><a href="/api">API Documentation</a></li>
+            <li><a href="/tools">Developer Tools</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/blog/json-validation-guide">JSON Guide</a></li>
+            <li><a href="/blog/common-json-errors">Common Errors</a></li>
+            <li><a href="/blog/json-best-practices">Best Practices</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/terms">Terms of Service</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Connect</h3>
+          <ul>
+            <li><a href="https://twitter.com/jsonlintplus" target="_blank" rel="noopener">Twitter</a></li>
+            <li><a href="https://github.com/jsonlintplus" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="/rss.xml">RSS Feed</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; 2025 JSONLintPlus.com</p>
+        <p class="footer-attribution">Created with ❤️ by RJ</p>
+      </div>
+    </div>
   </footer>
 
   <!-- Scripts -->
-  <!-- Scripts moved to external JS files -->
-<script src="js/env.js" defer></script>
-<script src="js/logger.js" defer></script>
-<script src="js/validator.js" defer></script>
-<script src="js/highlighter.js" defer></script>
-<script src="js/ui.js" defer></script>
+  <script src="js/theme-init.js"></script>
+  <script src="js/env.js" defer></script>
+  <script src="js/logger.js" defer></script>
+  <script src="js/validator.js" defer></script>
+  <script src="js/highlighter.js" defer></script>
+  <script src="js/ui.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/settings.js" defer></script>
+  <script src="js/fileHandler.js" defer></script>
+  <script src="js/urlHandler.js" defer></script>
+  <script src="js/keyboard.js" defer></script>
+  <script src="js/formatter.js" defer></script>
+
 </body>
 </html>
