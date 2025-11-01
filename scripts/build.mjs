@@ -21,7 +21,7 @@ import { minify as minifyHtml } from 'html-minifier-terser';
 const cwd = process.cwd();
 const SRC = {
   root: cwd,
-  html: path.join(cwd, 'index.html'),
+  htmlDir: cwd,
   cssDir: path.join(cwd, 'css'),
   jsDir: path.join(cwd, 'js'),
 };
@@ -97,27 +97,41 @@ async function main() {
 
   // Copy static assets from public/ (manifest, service worker, robots, etc.)
   await copyPublic();
+  
+  // Copy images folder
+  await copyImages();
+  
+  // Copy blog folder
+  await copyBlog();
+  
+  // Copy SEO and site files
+  await copySeoFiles();
 
-  // Rewrite index.html to reference hashed assets
-  const htmlIn = await fs.readFile(SRC.html, 'utf8');
-  const htmlRewritten = rewriteHtml(htmlIn, manifest);
+  // Process all HTML files in the root directory
+  const htmlFiles = await globAsync('*.html', { cwd: SRC.root, nodir: true });
+  
+  for (const htmlFile of htmlFiles) {
+    const htmlPath = path.join(SRC.root, htmlFile);
+    const htmlIn = await fs.readFile(htmlPath, 'utf8');
+    const htmlRewritten = rewriteHtml(htmlIn, manifest);
 
-  // Minify HTML
-  const htmlOut = await minifyHtml(htmlRewritten, {
-    collapseWhitespace: true,
-    removeComments: true,
-    removeRedundantAttributes: true,
-    removeEmptyAttributes: true,
-    minifyCSS: true, // only inline CSS, safe
-    minifyJS: false, // avoid touching inline JS (none expected)
-    keepClosingSlash: true,
-    useShortDoctype: true,
-    sortAttributes: true,
-    sortClassName: true,
-  });
+    // Minify HTML
+    const htmlOut = await minifyHtml(htmlRewritten, {
+      collapseWhitespace: true,
+      removeComments: true,
+      removeRedundantAttributes: true,
+      removeEmptyAttributes: true,
+      minifyCSS: true, // only inline CSS, safe
+      minifyJS: false, // avoid touching inline JS (none expected)
+      keepClosingSlash: true,
+      useShortDoctype: true,
+      sortAttributes: true,
+      sortClassName: true,
+    });
 
-  await fs.writeFile(path.join(DIST.root, 'index.html'), htmlOut, 'utf8');
-  console.log('HTML index.html -> dist/index.html');
+    await fs.writeFile(path.join(DIST.root, htmlFile), htmlOut, 'utf8');
+    console.log(`HTML ${htmlFile} -> dist/${htmlFile}`);
+  }
 
   // Write manifest
   await fs.writeJSON(DIST.manifest, {
@@ -213,6 +227,74 @@ async function copyPublic() {
     }
   } catch (err) {
     console.warn('Warning: failed to copy public/ -> dist/:', err.message);
+  }
+}
+
+async function copyImages() {
+  const imagesDir = path.join(cwd, 'images');
+  try {
+    const exists = await fs.pathExists(imagesDir);
+    if (exists) {
+      await fs.copy(imagesDir, path.join(DIST.root, 'images'), { overwrite: true, errorOnExist: false });
+      console.log('Copied images/ -> dist/images/');
+    } else {
+      // No images/ directory, skip silently
+    }
+  } catch (err) {
+    console.warn('Warning: failed to copy images/ -> dist/images/:', err.message);
+  }
+}
+
+async function copyBlog() {
+  const blogDir = path.join(cwd, 'blog');
+  try {
+    const exists = await fs.pathExists(blogDir);
+    if (exists) {
+      await fs.copy(blogDir, path.join(DIST.root, 'blog'), { overwrite: true, errorOnExist: false });
+      console.log('Copied blog/ -> dist/blog/');
+    } else {
+      // No blog/ directory, skip silently
+    }
+  } catch (err) {
+    console.warn('Warning: failed to copy blog/ -> dist/blog/:', err.message);
+  }
+}
+
+async function copySeoFiles() {
+  // Copy site.webmanifest
+  const webmanifestPath = path.join(cwd, 'site.webmanifest');
+  try {
+    const exists = await fs.pathExists(webmanifestPath);
+    if (exists) {
+      await fs.copy(webmanifestPath, path.join(DIST.root, 'site.webmanifest'), { overwrite: true });
+      console.log('Copied site.webmanifest -> dist/site.webmanifest');
+    }
+  } catch (err) {
+    console.warn('Warning: failed to copy site.webmanifest:', err.message);
+  }
+  
+  // Copy sitemap.xml if it exists in root (in addition to public/)
+  const sitemapPath = path.join(cwd, 'sitemap.xml');
+  try {
+    const exists = await fs.pathExists(sitemapPath);
+    if (exists) {
+      await fs.copy(sitemapPath, path.join(DIST.root, 'sitemap.xml'), { overwrite: true });
+      console.log('Copied sitemap.xml -> dist/sitemap.xml');
+    }
+  } catch (err) {
+    console.warn('Warning: failed to copy sitemap.xml:', err.message);
+  }
+  
+  // Copy rss.xml
+  const rssPath = path.join(cwd, 'rss.xml');
+  try {
+    const exists = await fs.pathExists(rssPath);
+    if (exists) {
+      await fs.copy(rssPath, path.join(DIST.root, 'rss.xml'), { overwrite: true });
+      console.log('Copied rss.xml -> dist/rss.xml');
+    }
+  } catch (err) {
+    console.warn('Warning: failed to copy rss.xml:', err.message);
   }
 }
 
