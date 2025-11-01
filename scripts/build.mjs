@@ -133,6 +133,32 @@ async function main() {
     console.log(`HTML ${htmlFile} -> dist/${htmlFile}`);
   }
 
+  // Process all HTML files in the blog directory
+  const blogHtmlFiles = await globAsync('blog/*.html', { cwd: SRC.root, nodir: true });
+  
+  for (const blogHtmlFile of blogHtmlFiles) {
+    const blogHtmlPath = path.join(SRC.root, blogHtmlFile);
+    const blogHtmlIn = await fs.readFile(blogHtmlPath, 'utf8');
+    const blogHtmlRewritten = rewriteBlogHtml(blogHtmlIn, manifest);
+
+    // Minify HTML
+    const blogHtmlOut = await minifyHtml(blogHtmlRewritten, {
+      collapseWhitespace: true,
+      removeComments: true,
+      removeRedundantAttributes: true,
+      removeEmptyAttributes: true,
+      minifyCSS: true, // only inline CSS, safe
+      minifyJS: false, // avoid touching inline JS (none expected)
+      keepClosingSlash: true,
+      useShortDoctype: true,
+      sortAttributes: true,
+      sortClassName: true,
+    });
+
+    await fs.writeFile(path.join(DIST.root, blogHtmlFile), blogHtmlOut, 'utf8');
+    console.log(`HTML ${blogHtmlFile} -> dist/${blogHtmlFile}`);
+  }
+
   // Write manifest
   await fs.writeJSON(DIST.manifest, {
     generatedAt: new Date().toISOString(),
@@ -156,15 +182,92 @@ function rewriteHtml(html, manifest) {
   // Replace <link href="css/*.css"> and <script src="js/*.js">
   let out = html;
 
-  // Replace CSS hrefs
+  // Replace CSS hrefs (relative paths)
   out = out.replace(/href="css\/([A-Za-z0-9._-]+\.css)"/g, (m, file) => {
     const key = `css/${file}`;
     const mapped = manifest[key] || key;
     return `href="${posixPath(mapped)}"`;
   });
 
-  // Replace JS srcs
+  // Replace CSS hrefs (absolute paths starting with /)
+  out = out.replace(/href="\/css\/([A-Za-z0-9._-]+\.css)"/g, (m, file) => {
+    const key = `css/${file}`;
+    const mapped = manifest[key] || key;
+    return `href="${posixPath(mapped)}"`;
+  });
+
+  // Replace JS srcs (relative paths)
   out = out.replace(/src="js\/([A-Za-z0-9._-]+\.js)"/g, (m, file) => {
+    const key = `js/${file}`;
+    const mapped = manifest[key] || key;
+    return `src="${posixPath(mapped)}"`;
+  });
+
+  // Replace JS srcs (absolute paths starting with /)
+  out = out.replace(/src="\/js\/([A-Za-z0-9._-]+\.js)"/g, (m, file) => {
+    const key = `js/${file}`;
+    const mapped = manifest[key] || key;
+    return `src="${posixPath(mapped)}"`;
+  });
+
+  // Add a build meta comment and preloads for critical assets (style.css, ui.js) if present
+  const criticalCss = manifest['css/style.css'];
+  const criticalJs = manifest['js/ui.js'];
+
+  const preloadTags = [
+    criticalCss ? `<link rel="preload" href="${criticalCss}" as="style">` : '',
+    criticalJs ? `<link rel="preload" href="${criticalJs}" as="script" crossorigin>` : '',
+  ].filter(Boolean).join('\n    ');
+
+  out = out.replace(/<head>([\s\S]*?)<\/head>/i, (match, inner) => {
+    // Avoid duplicating existing manifest/theme-color and keep GTM at the very top of <head>
+    const hasManifest = /<link[^>]+rel=["']manifest["'][^>]*>/i.test(inner) || /<link[^>]+rel=["']manifest["'][^>]*>/i.test(inner);
+    const hasThemeColor = /<meta[^>]+name=["']theme-color["'][^>]*>/i.test(inner) || /<meta[^>]+name=["']theme-color["'][^>]*>/i.test(inner);
+
+    const manifestTag = hasManifest ? '' : `<link rel="manifest" href="manifest.json">`;
+    const themeColorTag = hasThemeColor ? '' : `<meta name="theme-color" content="#4CAF50">`;
+
+    const buildBlock = `
+    <!-- Build: hashed assets, preloads -->
+    ${manifestTag}
+    ${themeColorTag}
+    ${preloadTags}
+  `;
+
+    // If GTM is present, keep it first and insert build block immediately after it
+    const gtmMarker = '<!-- Google Tag Manager -->';
+    const gtmEndMarker = '<!-- End Google Tag Manager -->';
+    const gtmStart = inner.indexOf(gtmMarker);
+    if (gtmStart !== -1) {
+      const gtmEnd = inner.indexOf(gtmEndMarker, gtmStart);
+      const insertPos = gtmEnd !== -1 ? gtmEnd + gtmEndMarker.length : gtmStart;
+      const before = inner.slice(0, insertPos);
+      const after = inner.slice(insertPos);
+      return `<head>${before}
+    ${buildBlock}${after}</head>`;
+    }
+
+    // Default: prepend build block before existing head content
+    return `<head>${buildBlock}
+    ${inner}</head>`;
+  });
+
+  return out;
+}
+
+function rewriteBlogHtml(html, manifest) {
+  // Replace <link href="../css/*.css"> and <script src="../js/*.js"> for blog files
+  let out = html;
+
+  // Replace CSS hrefs (blog files use relative paths)
+  out = out.replace(/href="\.\.\/css\/([A-Za-z0-9._-]+\.css)"/g, (m, file) => {
+    const key = `css/${file}`;
+    const mapped = manifest[key] || key;
+    return `href="${posixPath(mapped)}"`;
+  });
+
+  // Replace JS srcs (blog files use relative paths)
+  out = out.replace(/src="\.\.\/js\/([A-Za-z0-9._-]+\.js)"/g, (m, file) => {
     const key = `js/${file}`;
     const mapped = manifest[key] || key;
     return `src="${posixPath(mapped)}"`;
