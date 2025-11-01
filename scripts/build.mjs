@@ -186,28 +186,28 @@ function rewriteHtml(html, manifest) {
   out = out.replace(/href="css\/([A-Za-z0-9._-]+\.css)"/g, (m, file) => {
     const key = `css/${file}`;
     const mapped = manifest[key] || key;
-    return `href="${posixPath(mapped)}"`;
+    return `href="/${posixPath(mapped)}"`;
   });
 
   // Replace CSS hrefs (absolute paths starting with /)
   out = out.replace(/href="\/css\/([A-Za-z0-9._-]+\.css)"/g, (m, file) => {
     const key = `css/${file}`;
     const mapped = manifest[key] || key;
-    return `href="${posixPath(mapped)}"`;
+    return `href="/${posixPath(mapped)}"`;
   });
 
   // Replace JS srcs (relative paths)
   out = out.replace(/src="js\/([A-Za-z0-9._-]+\.js)"/g, (m, file) => {
     const key = `js/${file}`;
     const mapped = manifest[key] || key;
-    return `src="${posixPath(mapped)}"`;
+    return `src="/${posixPath(mapped)}"`;
   });
 
   // Replace JS srcs (absolute paths starting with /)
   out = out.replace(/src="\/js\/([A-Za-z0-9._-]+\.js)"/g, (m, file) => {
     const key = `js/${file}`;
     const mapped = manifest[key] || key;
-    return `src="${posixPath(mapped)}"`;
+    return `src="/${posixPath(mapped)}"`;
   });
 
   // Add a build meta comment and preloads for critical assets (style.css, ui.js) if present
@@ -215,8 +215,8 @@ function rewriteHtml(html, manifest) {
   const criticalJs = manifest['js/ui.js'];
 
   const preloadTags = [
-    criticalCss ? `<link rel="preload" href="${criticalCss}" as="style">` : '',
-    criticalJs ? `<link rel="preload" href="${criticalJs}" as="script" crossorigin>` : '',
+    criticalCss ? `<link rel="preload" href="/${criticalCss}" as="style">` : '',
+    criticalJs ? `<link rel="preload" href="/${criticalJs}" as="script" crossorigin>` : '',
   ].filter(Boolean).join('\n    ');
 
   out = out.replace(/<head>([\s\S]*?)<\/head>/i, (match, inner) => {
@@ -263,14 +263,14 @@ function rewriteBlogHtml(html, manifest) {
   out = out.replace(/href="\.\.\/css\/([A-Za-z0-9._-]+\.css)"/g, (m, file) => {
     const key = `css/${file}`;
     const mapped = manifest[key] || key;
-    return `href="${posixPath(mapped)}"`;
+    return `href="/${posixPath(mapped)}"`;
   });
 
   // Replace JS srcs (blog files use relative paths)
   out = out.replace(/src="\.\.\/js\/([A-Za-z0-9._-]+\.js)"/g, (m, file) => {
     const key = `js/${file}`;
     const mapped = manifest[key] || key;
-    return `src="${posixPath(mapped)}"`;
+    return `src="/${posixPath(mapped)}"`;
   });
 
   // Add a build meta comment and preloads for critical assets (style.css, ui.js) if present
@@ -278,8 +278,8 @@ function rewriteBlogHtml(html, manifest) {
   const criticalJs = manifest['js/ui.js'];
 
   const preloadTags = [
-    criticalCss ? `<link rel="preload" href="${criticalCss}" as="style">` : '',
-    criticalJs ? `<link rel="preload" href="${criticalJs}" as="script" crossorigin>` : '',
+    criticalCss ? `<link rel="preload" href="/${criticalCss}" as="style">` : '',
+    criticalJs ? `<link rel="preload" href="/${criticalJs}" as="script" crossorigin>` : '',
   ].filter(Boolean).join('\n    ');
 
   out = out.replace(/<head>([\s\S]*?)<\/head>/i, (match, inner) => {

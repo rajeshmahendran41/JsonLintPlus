@@ -85,7 +85,7 @@ function isHashedAsset(url) {
 }
 
 function isImage(url) {
-  return url.pathname.startsWith('/icons/') || /\.(png|jpg|jpeg|svg|webp|ico)$/.test(url.pathname);
+  return url.pathname.startsWith('/icons/') || url.pathname.startsWith('/images/') || /\.(png|jpg|jpeg|svg|webp|ico)$/.test(url.pathname);
 }
 
 async function networkFirst(req) {
@@ -129,9 +129,14 @@ async function cacheFirst(req) {
   const cache = await caches.open(RUNTIME_CACHE);
   const cached = await cache.match(req);
   if (cached) return cached;
-  const res = await fetch(req);
-  if (res && res.status === 200) {
-    cache.put(req, res.clone());
+  try {
+    const res = await fetch(req);
+    if (res && res.status === 200) {
+      cache.put(req, res.clone());
+    }
+    return res;
+  } catch (error) {
+    console.warn('Failed to fetch resource:', req.url, error);
+    throw error;
   }
-  return res;
 }
