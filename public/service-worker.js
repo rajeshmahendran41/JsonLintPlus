@@ -136,6 +136,12 @@ async function cacheFirst(req) {
     }
     return res;
   } catch (error) {
+    // For favicon.ico and other non-critical resources, don't throw errors
+    if (req.url.includes('favicon.ico') || req.url.includes('manifest.json')) {
+      console.warn('Failed to fetch non-critical resource:', req.url);
+      // Return a basic response to prevent errors
+      return new Response('', { status: 404, statusText: 'Not Found' });
+    }
     console.warn('Failed to fetch resource:', req.url, error);
     throw error;
   }

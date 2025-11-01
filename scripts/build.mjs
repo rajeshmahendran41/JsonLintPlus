@@ -104,6 +104,9 @@ async function main() {
   // Copy blog folder
   await copyBlog();
   
+  // Copy config folder
+  await copyConfig();
+  
   // Copy SEO and site files
   await copySeoFiles();
 
@@ -360,6 +363,21 @@ async function copyBlog() {
     }
   } catch (err) {
     console.warn('Warning: failed to copy blog/ -> dist/blog/:', err.message);
+  }
+}
+
+async function copyConfig() {
+  const configDir = path.join(cwd, 'config');
+  try {
+    const exists = await fs.pathExists(configDir);
+    if (exists) {
+      await fs.copy(configDir, path.join(DIST.root, 'config'), { overwrite: true, errorOnExist: false });
+      console.log('Copied config/ -> dist/config/');
+    } else {
+      // No config/ directory, skip silently
+    }
+  } catch (err) {
+    console.warn('Warning: failed to copy config/ -> dist/config/:', err.message);
   }
 }
 
