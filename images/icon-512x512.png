@@ -1,0 +1,16 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="32" cy="32" r="30" fill="#4CAF50" stroke="#45a049" stroke-width="2"/>
+
+  <!-- Left curly bracket -->
+  <path d="M16 20 C16 16, 20 16, 20 20 L20 24 C20 28, 16 28, 16 32 C16 36, 20 36, 20 40 L20 44 C20 48, 16 48, 16 44"
+        stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+  <!-- Right curly bracket -->
+  <path d="M48 20 C48 16, 44 16, 44 20 L44 24 C44 28, 48 28, 48 32 C48 36, 44 36, 44 40 L44 44 C44 48, 48 48, 48 44"
+        stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+  <!-- Plus sign in the middle -->
+  <rect x="29" y="26" width="6" height="12" rx="1" fill="white"/>
+  <rect x="26" y="29" width="12" height="6" rx="1" fill="white"/>
+</svg>
