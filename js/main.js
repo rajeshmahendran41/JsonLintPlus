@@ -158,12 +158,6 @@ class JSONValidatorApp {
     const mainNav = document.querySelector('.main-nav');
 
     if (mobileMenuToggle && mainNav) {
-      mobileMenuToggle.addEventListener('click', () => {
-        mainNav.classList.toggle('open');
-        mobileMenuToggle.setAttribute('aria-expanded',
-          mainNav.classList.contains('open').toString());
-      });
-
       // Close menu when clicking outside
       document.addEventListener('click', (e) => {
         if (!mainNav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
@@ -763,3 +757,18 @@ const app = new JSONValidatorApp();
 
 // Make app available globally for debugging
 window.jsonValidatorApp = app;
+
+// Global function for mobile menu toggle (for onclick attribute)
+window.toggleMobileMenu = function() {
+  const mainNav = document.querySelector('.main-nav');
+  const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+
+  if (mainNav) {
+    mainNav.classList.toggle('open');
+  }
+
+  if (mobileMenuToggle) {
+    mobileMenuToggle.setAttribute('aria-expanded',
+      mainNav ? mainNav.classList.contains('open').toString() : 'false');
+  }
+};

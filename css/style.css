@@ -816,6 +816,13 @@ body {
   color: #cccccc;
 }
 
+/* Dark mode mobile menu adjustments */
+@media (max-width: 768px) {
+  [data-theme="dark"] .main-nav {
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.5);
+  }
+}
+
 /* Animations */
 @keyframes fadeIn {
   from { opacity: 0; }
@@ -959,10 +966,10 @@ textarea:focus-visible {
 @media (max-width: 768px) {
   .main-nav {
     position: fixed;
-    top: 0;
-    right: -100%;
-    width: 280px;
-    height: 100vh;
+    top: var(--header-height);
+    right: -50%;
+    width: 50%;
+    height: calc(100vh - var(--header-height));
     background-color: var(--bg-primary);
     box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
     transition: right 0.3s ease;
@@ -975,13 +982,20 @@ textarea:focus-visible {
 
   .nav-list {
     flex-direction: column;
-    padding: 2rem 1rem;
+    padding: 0 0.5rem 0.5rem 0.5rem;
     gap: 0;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-y: auto;
+    max-height: 100%;
   }
 
   .nav-link {
+    display: block;
+    width: 100%;
     padding: 1rem 0;
     border-bottom: 1px solid var(--border-light);
+    text-align: left;
   }
 
   .mobile-menu-toggle {

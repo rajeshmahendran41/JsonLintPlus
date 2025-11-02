@@ -134,84 +134,84 @@
 /* Mobile Landscape (576px - 767px) */
 @media (max-width: 767px) and (min-width: 576px) {
   .app-main {
-    padding: 0.5rem;
+    padding: 0.375rem;
   }
   
   .app-header {
     height: auto;
-    padding: 1rem 0.5rem;
+    padding: 0.75rem 0.375rem;
   }
   
   .app-title {
-    font-size: 1.375rem;
+    font-size: 1.25rem;
   }
   
   .tagline {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
   
   .toolbar {
     flex-direction: column;
-    gap: 0.75rem;
-    padding: 0.75rem;
+    gap: 0.5rem;
+    padding: 0.5rem;
     min-height: auto;
   }
   
   .action-buttons {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.375rem;
   }
   
   .toolbar-actions {
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.375rem;
   }
   
   .btn {
-    padding: 0.5rem;
-    font-size: 0.75rem;
+    padding: 0.375rem 0.5rem;
+    font-size: 0.7rem;
     flex-direction: column;
-    gap: 0.25rem;
-    min-height: 60px;
+    gap: 0.125rem;
+    min-height: 44px;
   }
   
   .btn-icon {
-    min-width: 32px;
-    height: 32px;
+    min-width: 28px;
+    height: 28px;
   }
   
   .btn svg {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
   }
   
   .content-area {
-    min-height: 350px;
+    min-height: 300px;
   }
   
   .json-editor, .json-output {
-    font-size: 12px;
-    padding: 0.75rem;
+    font-size: 11px;
+    padding: 0.5rem;
   }
   
   .info-panel {
-    padding: 0.375rem 0.5rem;
-    font-size: 0.75rem;
+    padding: 0.25rem 0.375rem;
+    font-size: 0.7rem;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.125rem;
     align-items: flex-start;
   }
   
   .status-bar {
-    padding: 0.5rem;
+    padding: 0.375rem;
     min-height: auto;
   }
   
   .status-info {
-    gap: 0.5rem;
-    font-size: 0.75rem;
+    gap: 0.375rem;
+    font-size: 0.7rem;
     flex-wrap: wrap;
   }
   
@@ -539,5 +539,88 @@
   .info-panel, .status-bar {
     padding: 0.25rem;
     font-size: 0.65rem;
+  }
+}
+
+/* API page specific mobile styles */
+@media (max-width: 768px) {
+  .code-example {
+    margin: 1rem 0;
+  }
+
+  .code-example pre {
+    font-size: 11px;
+    line-height: 1.4;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    padding: 1rem;
+    background-color: var(--bg-secondary);
+    border-radius: var(--border-radius-sm);
+    border: 1px solid var(--border-color);
+  }
+
+  .code-example h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .api-features ul,
+  .api-benefits ul {
+    padding-left: 1.5rem;
+  }
+
+  .api-features li,
+  .api-benefits li {
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .coming-soon-notice {
+    padding: 1.5rem 1rem;
+  }
+
+  .api-preview {
+    padding: 1.5rem 1rem;
+  }
+}
+/* Extreme Mobile Button Size Reductions */
+@media (max-width: 767px) {
+  .btn {
+    padding: 0.15rem 0.25rem !important;
+    font-size: 0.55rem !important;
+    min-height: 32px !important;
+  }
+  
+  .btn-icon {
+    min-width: 20px !important;
+    height: 20px !important;
+  }
+  
+  .btn svg {
+    width: 10px !important;
+    height: 10px !important;
+  }
+  
+  .action-buttons {
+    gap: 0.15rem !important;
+  }
+}
+
+/* Ultra Mobile Optimizations */
+@media (max-width: 399px) {
+  .btn {
+    padding: 0.1rem 0.2rem !important;
+    font-size: 0.5rem !important;
+    min-height: 28px !important;
+  }
+  
+  .btn-icon {
+    min-width: 18px !important;
+    height: 18px !important;
+  }
+  
+  .action-buttons {
+    grid-template-columns: repeat(2, 1fr) !important;
   }
 }

@@ -48,9 +48,9 @@
   <meta name="color-scheme" content="light dark">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="/images/logo.svg">
-  <link rel="apple-touch-icon" href="/images/logo.svg">
-  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+  <link rel="apple-touch-icon" href="images/logo.svg">
+  <link rel="manifest" href="site.webmanifest">
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/style.css">
@@ -164,6 +164,25 @@
     }
   }
   </script>
+
+  <script>
+    // Global function for mobile menu toggle
+    window.toggleMobileMenu = function() {
+      console.log('Global toggleMobileMenu called');
+      const mainNav = document.querySelector('.main-nav');
+      const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+
+      if (mainNav) {
+        mainNav.classList.toggle('open');
+        console.log('Menu toggled, open state:', mainNav.classList.contains('open'));
+      }
+
+      if (mobileMenuToggle) {
+        mobileMenuToggle.setAttribute('aria-expanded',
+          mainNav ? mainNav.classList.contains('open').toString() : 'false');
+      }
+    };
+  </script>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -177,7 +196,7 @@
     <div class="header-content">
       <div class="logo">
         <a href="/" class="logo-link">
-          <img src="/images/logo.svg" alt="JSONLintPlus" width="40" height="40">
+          <img src="images/logo.svg" alt="JSONLintPlus" width="40" height="40">
           <span class="logo-text">JSONLintPlus</span>
         </a>
       </div>
@@ -200,7 +219,7 @@
           </li>
         </ul>
       </nav>
-      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+      <button class="mobile-menu-toggle" aria-label="Toggle menu" onclick="toggleMobileMenu()">
         <span></span>
         <span></span>
         <span></span>
