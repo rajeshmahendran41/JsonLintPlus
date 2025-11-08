@@ -52,8 +52,8 @@
     }
 
     window.addEventListener('load', function() {
-      var swUrl = 'public/service-worker.js';
-      navigator.serviceWorker.register(swUrl, { scope: './' })
+      var swUrl = 'service-worker.js';
+      navigator.serviceWorker.register(swUrl, { scope: '/' })
         .then(function(reg) {
           console.log('Service Worker registered with scope:', reg.scope);
           if (reg.update) {
